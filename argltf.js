@@ -54,8 +54,8 @@ function init() {
     
     //const gltfloader = new THREE.GLTFLoader();
     const gltfloader = new GLTFLoader();
-    //gltfloader.load('./model/tree.gltf',function(gltf){
-    gltfloader.load('./model/tiny_house.glb',function(gltf){
+    gltfloader.load('./model/tree.gltf',function(gltf){
+   // gltfloader.load('./model/tiny_house.glb',function(gltf){
           //设置模型大小
             gltf.scene.scale.set(0.2, 0.2, 0.2);
             //console.log(gltf.scene.scale);
