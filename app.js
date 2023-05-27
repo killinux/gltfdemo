@@ -33,9 +33,9 @@ animate();
 
 const loader = new GLTFLoader();
 var obj_count=0;
-//loader.load('./model/free_bmw_m3_e30.glb', (gltf) => {
+loader.load('./model/free_bmw_m3_e30.glb', (gltf) => {
 //loader.load('./model/jill.glb', (gltf) => {
-loader.load('./model/tree.gltf', (gltf) => {
+//loader.load('./model/tree.gltf', (gltf) => {
 //loader.load('./model/witch_naked/scene.gltf', (gltf) => {
 //loader.load('./model/jill/scene.gltf', (gltf) => {
 //loader.load('./model/tiny_house.glb', (gltf) => {

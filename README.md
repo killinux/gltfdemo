@@ -1,4 +1,7 @@
-#copy from  gltftool remove model  
+npm run dev
+
+想做一个 ar加载gltf的例子
+
 需要https ,配置vite  
 有的demo需要：AR-Examples  
 
