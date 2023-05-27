@@ -17,3 +17,6 @@ argltf.html  ar + 加载gltf tree
 model_obj.html ar+ 加载obj+mtl  fish  
 
 model.html 没成功 tree   
+
+需要自己的再看下这个
+three-gltf-viewer
