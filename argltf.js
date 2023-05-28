@@ -19,7 +19,11 @@ function init() {
     //画面設定
     const scene = new THREE.Scene();
     scene.visible = false;
-    const camera = new THREE.Camera();
+    //const camera = new THREE.Camera();
+    const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+    //camera.lookAt(new THREE.Vector3(20,-24,7))
+
+
     scene.add(camera);
     const light = new THREE.AmbientLight(0xFFFFFF, 1.0);
     scene.add(light);
@@ -54,35 +58,39 @@ function init() {
     
     //const gltfloader = new THREE.GLTFLoader();
     const gltfloader = new GLTFLoader();
-    gltfloader.load('./model/tree.gltf',function(gltf){
-   // gltfloader.load('./model/tiny_house.glb',function(gltf){
-          //设置模型大小
-            gltf.scene.scale.set(0.2, 0.2, 0.2);
-            //console.log(gltf.scene.scale);
-            gltf.scene.traverse( function ( child ) {
-                //console.log("遍历场景--->");
-                //console.log(child);
-                if(child.name=="Sketchfab_model"){ //显示位置
-                    child.position.x=0;
-                    child.position.y=0
-                    child.position.z=0
-                    console.log("Sketchfab_model.position.x:"+child.position.x);
-                    console.log("Sketchfab_model.position.y:"+child.position.y);
-                    console.log("Sketchfab_model.position.z:"+child.position.z);
-                    child.scale.x=0.2;
-                    child.scale.y=0.2;
-                    child.scale.z=0.2;
-                    console.log("Sketchfab_model.x:"+child.scale.x);//显示大小
-                    console.log("Sketchfab_model.y:"+child.scale.y);
-                    console.log("Sketchfab_model.z:"+child.scale.z);
+    //const this_url = "./model/tree.gltf";
+    const this_url = "./models/tiny_house.glb";
+    //const this_url = "./models/witch_naked.glb";
+    //const this_url = "./models/new_witch_naked.glb";
+    console.log("this_url:"+this_url);
+    gltfloader.load(this_url,function(gltf){
+            //设置模型大小
+            console.log(gltf.scene.scale);
+            const nameNode = gltf.scene.getObjectByName("Sketchfab_model");
+            //const nameNode = gltf.scene.getObjectByName("Yennefer_Naked_medfbx");
+            if(this_url=="./models/new_witch_naked.glb"){
+                gltf.scene.scale.set(1.5, 1.5, 1.5);
+            }else if(this_url=="./models/tiny_house.glb"){
+                gltf.scene.scale.set(0.002, 0.002, 0.002);
+            }
+            console.log("nameNode.position.x:"+nameNode.position.x);
+            console.log("nameNode.position.y:"+nameNode.position.y);
+            console.log("nameNode.position.z:"+nameNode.position.z);
+            console.log("nameNode.scale.x:"+nameNode.scale.x);//显示大小
+            console.log("nameNode.scale.y:"+nameNode.scale.y);
+            console.log("nameNode.scale.z:"+nameNode.scale.z);
+            /*
+            gltf.scene.traverse( function ( child ) {//第二种方法，遍历
+                if(child.name=="Sketchfab_model"){ //显示位置                  
+                    if(this_url=="./models/new_witch_naked.glb"){
+                         child.scale.x=0.5;
+                    }
                 }
-                //child.name="main_mode";
                 if ( child.isMesh ) {
                      // TOFIX RoughnessMipmapper seems to be broken with WebGL 2.0
                      // roughnessMipmapper.generateMipmaps( child.material );
                 }
-            });
-
+            });*/
           marker1.add(gltf.scene);
       });
 
@@ -96,6 +104,7 @@ function init() {
     //レンダリング
     requestAnimationFrame(function animate(){
         requestAnimationFrame(animate);
+        //console.log('camera.position:',camera.position);
         if (arToolkitSource.ready) {
             arToolkitContext.update(arToolkitSource.domElement);
             scene.visible = camera.visible;

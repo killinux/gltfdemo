@@ -33,15 +33,13 @@ animate();
 
 const loader = new GLTFLoader();
 var obj_count=0;
-//loader.load('./model/free_bmw_m3_e30.glb', (gltf) => {
-//loader.load('./model/jill.glb', (gltf) => {
-//loader.load('./model/tree.gltf', (gltf) => {
-//loader.load('./model/witch_naked/scene.gltf', (gltf) => {
-//loader.load('./model/jill/scene.gltf', (gltf) => {
-loader.load('./models/tiny_house.glb', (gltf) => {
-//loader.load('./models/witch_naked.glb', (gltf) => {
+//const this_url = "./model/tree.gltf";
+const this_url = "./models/tiny_house.glb";
+//const this_url = "./models/witch_naked.glb";
+//const this_url = "./models/new_witch_naked.glb";
+loader.load(this_url, (gltf) => {
     //设置模型大小
-    gltf.scene.scale.set(0.2, 0.2, 0.2);
+    
     //console.log(gltf.scene.scale);
     gltf.scene.traverse( function ( child ) {
         obj_count++;
@@ -49,16 +47,22 @@ loader.load('./models/tiny_house.glb', (gltf) => {
         //console.log(child);
         if(child.name=="Sketchfab_model"){ //显示位置
 			//位置移动到中央
-            child.position.x=0;
-            child.position.y=0
-            child.position.z=0
+            // child.position.x=-20.84910774230957; 
+            if(this_url=="./models/tiny_house.glb"){
+                gltf.scene.scale.set(0.2, 0.2, 0.2);
+                child.scale.x=0.2;
+                child.scale.y=0.2;
+                child.scale.z=0.2;
+            //}else if(this_url=="./models/witch_naked.glb"){
+            }else if(this_url=="./models/new_witch_naked.glb"){
+                child.scale.x=1;
+                child.scale.y=1;
+                child.scale.z=1;
+            }
             console.log("Sketchfab_model.position.x:"+child.position.x);
             console.log("Sketchfab_model.position.y:"+child.position.y);
             console.log("Sketchfab_model.position.z:"+child.position.z);
-            child.scale.x=0.2;
-            child.scale.y=0.2;
-            child.scale.z=0.2;
-			if(child.scale.x<0.1){}
+
             console.log("Sketchfab_model.x:"+child.scale.x);//显示大小
             console.log("Sketchfab_model.y:"+child.scale.y);
             console.log("Sketchfab_model.z:"+child.scale.z);
@@ -70,11 +74,8 @@ loader.load('./models/tiny_house.glb', (gltf) => {
         }
     });
     scene.add(gltf.scene);
-    //var object1 = scene.getObjectByName("main_mode");
     //var object1 = scene.getObjectByName("Sketchfab_model");
     // console.log("object1.position.x:"+object1.position.x);
-    // console.log("object1.position.y:"+object1.position.y);
-    // console.log("object1.position.z:"+object1.position.z);
 });
 
 
