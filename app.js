@@ -18,7 +18,7 @@ const scene = new THREE.Scene();
 scene.background = new THREE.Color(0xeaeaea);
 
 // 添加灯光
-const ambientLight = new THREE.AmbientLight(0xffffff, 5);
+const ambientLight = new THREE.AmbientLight(0xffffff, 1);
 scene.add(ambientLight);
 
 
@@ -35,6 +35,7 @@ const loader = new GLTFLoader();
 var obj_count=0;
 //const this_url = "./model/tree.gltf";
 const this_url = "./models/tiny_house.glb";
+//const this_url = "./models/tifa_nude.glb";
 //const this_url = "./models/witch_naked.glb";
 //const this_url = "./models/new_witch_naked.glb";
 loader.load(this_url, (gltf) => {
@@ -58,6 +59,8 @@ loader.load(this_url, (gltf) => {
                 child.scale.x=1;
                 child.scale.y=1;
                 child.scale.z=1;
+            }else if(this_url=="./models/tifa_nude.glb"){
+				gltf.scene.scale.set(5, 5, 5);
             }
             console.log("Sketchfab_model.position.x:"+child.position.x);
             console.log("Sketchfab_model.position.y:"+child.position.y);
