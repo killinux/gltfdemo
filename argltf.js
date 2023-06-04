@@ -135,7 +135,7 @@ function init() {
             const nameNode = gltf.scene.getObjectByName("Sketchfab_model");
             //const nameNode = gltf.scene.getObjectByName("Yennefer_Naked_medfbx");
             if(this_url=="./models/new_witch_naked.glb"){
-                gltf.scene.scale.set(1.5, 1.5, 1.5);
+                gltf.scene.scale.set(4, 4, 4);
             }else if(this_url=="./models/tiny_house.glb"){
                 gltf.scene.scale.set(0.002, 0.002, 0.002);
 			}else if(this_url=="./models/tifa_nude.glb"){
@@ -165,9 +165,12 @@ function init() {
     //マーカー設定  
     const marker1 = new THREE.Group();
     scene.add(marker1);
+    //https://ar-js-org.github.io/AR.js/three.js/examples/marker-training/examples/generator.html
+    //用任意图片 生成 patt 
     const arMarkerControls = new THREEx.ArMarkerControls(arToolkitContext, marker1, {
         type: 'pattern',
-        patternUrl: 'data/patt.hiro',
+        //patternUrl: 'data/patt.hiro',
+        patternUrl: 'hao/pattern-luna.patt',
     });
     //レンダリング
     requestAnimationFrame(function animate(){
