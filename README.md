@@ -9,6 +9,12 @@
 有的demo需要：AR-Examples  
 https://github.com/killinux/AR-Examples  当中加载gltf的部分
 
+需要建个图像追踪的marker   
+参考：http://www.febeacon.com/arjs-docs-zh-cn/routes/marker_based.html
+
+用工具https://jeromeetienne.github.io/AR.js/three.js/examples/marker-training/examples/generator.html  
+生成patt文件和图片用来识别呈现3d的地方 
+
 
 ### 启动
 npm i   

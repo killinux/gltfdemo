@@ -127,7 +127,9 @@ function init() {
 //    const this_url = "./models/tiny_house.glb";
     //const this_url = "./models/tifa_nude.glb";
     //const this_url = "./models/witch_naked.glb";
-    const this_url = "./models/new_witch_naked.glb";
+    //const this_url = "./models/new_witch_naked.glb";
+    //const this_url = "./models/goku.glb";
+    const this_url = "./models2/son_goku.glb";
     console.log("this_url:"+this_url);
     gltfloader.load(this_url,function(gltf){
             //设置模型大小
@@ -140,6 +142,9 @@ function init() {
                 gltf.scene.scale.set(0.002, 0.002, 0.002);
 			}else if(this_url=="./models/tifa_nude.glb"){
                 gltf.scene.scale.set(5, 5, 5);
+            }else if(this_url=="./models/goku.glb"){
+                gltf.scene.scale.set(10, 10, 10);
+				console.log("goku----->");
             }
             console.log("nameNode.position.x:"+nameNode.position.x);
             console.log("nameNode.position.y:"+nameNode.position.y);
@@ -171,6 +176,7 @@ function init() {
         type: 'pattern',
         //patternUrl: 'data/patt.hiro',
         patternUrl: 'hao/pattern-luna.patt',
+        //patternUrl: 'hao/bai.patt',
     });
     //レンダリング
     requestAnimationFrame(function animate(){
