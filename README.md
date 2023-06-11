@@ -49,3 +49,11 @@ blender编辑glb文件
 Yennefer_Naked_medfbx.png  
 调整sidebar，脚的位置 为原点0，0，0   
 重新export glb文件加载即可  
+
+
+### todo  
+https://github.com/8thwall/web/tree/master/examples/aframe/manipulate
+https://github.com/killinux/8thwall-web
+A-Frame-Examples
+AR.js-examples
+three-gltf-viewer
