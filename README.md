@@ -58,7 +58,7 @@ ar.html 可以加载叶奈法，但是似乎tifa_nude.glb不行，是因为太�
 另外有个错误
 THREE.WebGLRenderer: OES_texture_float_linear extension not supported.
 没解决
-
+A-Frame-Examples/screen-controls-buttons-look.html 是可以移动位置的demo
 
 
 ### todo  
