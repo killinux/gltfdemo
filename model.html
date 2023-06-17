@@ -11,11 +11,12 @@
 <body>
 <a-scene environment="preset: default; fog: 0; playArea: 1.0; groundYScale: 5.00; groundTexture: walkernoise; groundColor: #002200; groundColor2: #003300">
 	<a-assets>
-		<a-asset-item id="goku" src="models2/goku.glb"></a-asset-item>
-		<!--a-asset-item id="goku" src="models2/son_goku.glb"></a-asset-item-->
+		<!--a-asset-item id="goku" src="models2/goku.glb"></a-asset-item-->
+		<a-asset-item id="goku" src="models2/son_goku.glb" light="color: #AFA; intensity: 1.5" ></a-asset-item>
 		<!--a-asset-item id="goku" src="models/new_witch_naked.glb"></a-asset-item-->
+		<!--a-asset-item id="goku" src="models/tifa_nude.glb"></a-asset-item-->
 	</a-assets>
-	<a-entity gltf-model="#goku" position="0 0 -2" rotation="0 0 0" ></a-entity>
+	<a-entity gltf-model="#goku" position="0 0 -3" rotation="0 0 0" ></a-entity>
 	<a-sphere radius="0.1"></a-sphere>
 	<!-- Alter scale/rotation to create appearance of multiple distinct tree models:
 	-->

@@ -1,0 +1,94 @@
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>simple</title>
+<script type="module">
+import * as THREE from 'three';
+import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls';
+import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader';
+import { RoomEnvironment } from 'three/examples/jsm/environments/RoomEnvironment.js';
+window.addEventListener("DOMContentLoaded", init);
+function init() {
+  // 创建相机
+  const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+  camera.position.x = -50;
+  camera.position.z = 50;
+  camera.position.y= 50;
+  // 创建渲染器
+  const renderer =new THREE.WebGLRenderer( { alpha: true,antialias: true,precision: 'highp'} );
+  renderer.useLegacyLights = true;
+  renderer.outputEncoding = THREE.sRGBEncoding;
+  renderer.setClearColor( 0xcccccc );
+  renderer.setPixelRatio( window.devicePixelRatio );
+  console.log("window.devicePixelRatio---->");
+  console.log(window.devicePixelRatio);
+  renderer.setSize( window.innerWidth, window.innerHeight );
+  renderer.toneMapping = Number(THREE.LinearToneMapping);
+  renderer.toneMappingExposure = Math.pow(2, 0.0);
+  const pmremGenerator = new THREE.PMREMGenerator( renderer );
+  pmremGenerator.compileEquirectangularShader();
+  const neutralEnvironment =  pmremGenerator.fromScene( new RoomEnvironment() ).texture;
+
+  renderer.setSize( window.innerWidth, window.innerHeight );
+  document.body.appendChild( renderer.domElement );
+  // 创建场景
+  const scene = new THREE.Scene();
+  scene.environment = neutralEnvironment;
+  scene.background = new THREE.Color(0xeaeaea);
+  // 添加灯光
+  // 添加控制器
+  new OrbitControls(camera, document.body);
+  function animate() {
+      requestAnimationFrame( animate );
+      renderer.render( scene, camera );
+  }
+  animate();
+
+  const loader = new GLTFLoader();
+  var obj_count=0;
+  //const this_url = "./model/tree.gltf";
+  //const this_url = "./models/tiny_house.glb";
+  //const this_url = "./models/goku.glb";
+  //const this_url = "./models2/son_goku.glb";
+  //const this_url = "./models/tifa_nude.glb";
+  //const this_url = "./models/witch_naked.glb";
+  const this_url = "./models/new_witch_naked.glb";
+  loader.load(this_url, (gltf) => {
+      //设置模型大小
+      gltf.scene.traverse( function ( child ) {
+          obj_count++;
+          if(child.name=="Sketchfab_model"){ //显示位置
+        //位置移动到中央
+              // child.position.x=-20.84910774230957; 
+          gltf.scene.scale.set(5, 5, 5);
+          if(this_url=="./models/tiny_house.glb"){
+              gltf.scene.scale.set(0.2, 0.2, 0.2);
+              child.scale.x=0.2;
+              child.scale.y=0.2;
+              child.scale.z=0.2;
+          //}else if(this_url=="./models/witch_naked.glb"){
+          }else if(this_url=="./models/new_witch_naked.glb"){
+              child.scale.x=0.6;
+              child.scale.y=0.6;
+              child.scale.z=0.6;
+          }else if(this_url=="./models/tifa_nude.glb"){
+          gltf.scene.scale.set(5, 5, 5);
+          }else if(this_url=="./models/goku.glb"){
+              gltf.scene.scale.set(100, 100, 100);
+          }
+          console.log("Sketchfab_model.position.x:"+child.position.x);
+          console.log("Sketchfab_model.position.y:"+child.position.y);
+          console.log("Sketchfab_model.position.z:"+child.position.z);
+          console.log("Sketchfab_model.x:"+child.scale.x);//显示大小
+          console.log("Sketchfab_model.y:"+child.scale.y);
+          console.log("Sketchfab_model.z:"+child.scale.z);
+          }
+      });
+      scene.add(gltf.scene);
+  });
+}
+</script>
+  </head>
+  <body>
+  </body>
+</html>
