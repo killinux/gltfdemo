@@ -51,6 +51,7 @@ Yennefer_Naked_medfbx.png
 重新export glb文件加载即可  
 
 ### 2023.06.17  
+add ar.html arone.html 这俩基本一样
 ios 上 这个必须有，否则一直crash
 <meta name="viewport" content="width=device-width, user-scalable=no"/>
 ar.html 可以加载叶奈法，但是似乎tifa_nude.glb不行，是因为太大了么
@@ -59,6 +60,7 @@ ar.html 可以加载叶奈法，但是似乎tifa_nude.glb不行，是因为太�
 THREE.WebGLRenderer: OES_texture_float_linear extension not supported.
 没解决
 A-Frame-Examples/screen-controls-buttons-look.html 是可以移动位置的demo
+renderer.useLegacyLights = false; 如果为true ，继承光线，就不用配置光源了
 
 
 ### todo  
