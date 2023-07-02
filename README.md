@@ -80,3 +80,8 @@ the gltf loader:
 use glTF-Sample-Viewer
 glTF-Sample-Models
 glTF-Sample-Environments 
+
+
+load fbx 有点麻烦
+下次试试 https://github.com/facebookincubator/FBX2glTF  
+cg99 上的fbx转换成 glb?
