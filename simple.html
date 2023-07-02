@@ -1,24 +1,34 @@
 <html>
   <head>
     <meta charset="UTF-8" />
-    <title>simple</title>
+	<meta name="viewport" content="width=device-width, user-scalable=no"/>
+    <title>simple in gltfdemo</title>
 <script type="module">
 import * as THREE from 'three';
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls';
-import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader';
+import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js';
+import { KTX2Loader } from 'three/examples/jsm/loaders/KTX2Loader.js';
+import { DRACOLoader } from 'three/examples/jsm/loaders/DRACOLoader.js';
+import { MeshoptDecoder } from 'three/examples/jsm/libs/meshopt_decoder.module.js';
+import { EXRLoader } from 'three/examples/jsm/loaders/EXRLoader.js';
 import { RoomEnvironment } from 'three/examples/jsm/environments/RoomEnvironment.js';
-window.addEventListener("DOMContentLoaded", init);
-function init() {
+const MANAGER = new THREE.LoadingManager();
+const THREE_PATH = `https://unpkg.com/three@0.${THREE.REVISION}.x`
+const DRACO_LOADER = new DRACOLoader( MANAGER ).setDecoderPath( `${THREE_PATH}/examples/jsm/libs/draco/gltf/` );
+const KTX2_LOADER = new KTX2Loader( MANAGER ).setTranscoderPath( `${THREE_PATH}/examples/jsm/libs/basis/` );
+//window.addEventListener("DOMContentLoaded", init);
+//function init() {
   // 创建相机
   const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
   camera.position.x = -50;
   camera.position.z = 50;
   camera.position.y= 50;
+
   // 创建渲染器
   const renderer =new THREE.WebGLRenderer( { alpha: true,antialias: true,precision: 'highp'} );
-  renderer.useLegacyLights = true;
+  renderer.useLegacyLights = false;
   renderer.outputEncoding = THREE.sRGBEncoding;
-  renderer.setClearColor( 0xcccccc );
+  //renderer.setClearColor( 0xcccccc );
   renderer.setPixelRatio( window.devicePixelRatio );
   console.log("window.devicePixelRatio---->");
   console.log(window.devicePixelRatio);
@@ -29,14 +39,32 @@ function init() {
   pmremGenerator.compileEquirectangularShader();
   const neutralEnvironment =  pmremGenerator.fromScene( new RoomEnvironment() ).texture;
 
-  renderer.setSize( window.innerWidth, window.innerHeight );
+   
   document.body.appendChild( renderer.domElement );
+  const canvas = renderer.domElement;
+  camera.aspect = canvas.clientWidth / canvas.clientHeight;
+  camera.updateProjectionMatrix();
+  //renderer.setSize( window.innerWidth, window.innerHeight );
+  
+
   // 创建场景
   const scene = new THREE.Scene();
   scene.environment = neutralEnvironment;
-  scene.background = new THREE.Color(0xeaeaea);
+  scene.background = new THREE.Color(0x191919);
+  //scene.background = new THREE.Color(0xeaeaea);
   // 添加灯光
-  // 添加控制器
+    // const light1  = new THREE.AmbientLight(0xFFFFFF, 0.3);
+    // light1.name = 'ambient_light';
+    // camera.add( light1 );
+    // const light2  = new THREE.DirectionalLight(0xFFFFFF, 0.8 * Math.PI);
+    // light2.position.set(0.5, 0, 0.866); // ~60º
+    // light2.name = 'main_light';
+    // camera.add( light2 );
+    // const hemiLight = new THREE.HemisphereLight();
+    // hemiLight.name = 'hemi_light';
+    // camera.add(hemiLight);
+    // scene.add(camera);
+  // 添加控制器 有了这个才能移动
   new OrbitControls(camera, document.body);
   function animate() {
       requestAnimationFrame( animate );
@@ -44,15 +72,22 @@ function init() {
   }
   animate();
 
-  const loader = new GLTFLoader();
+  //const loader = new GLTFLoader();
+  const loader = new GLTFLoader( MANAGER )
+        .setCrossOrigin('anonymous')
+        .setDRACOLoader( DRACO_LOADER )
+        .setKTX2Loader( KTX2_LOADER.detectSupport( renderer ) )
+        .setMeshoptDecoder( MeshoptDecoder );
+
   var obj_count=0;
   //const this_url = "./model/tree.gltf";
   //const this_url = "./models/tiny_house.glb";
   //const this_url = "./models/goku.glb";
   //const this_url = "./models2/son_goku.glb";
-  //const this_url = "./models/tifa_nude.glb";
+  const this_url = "./models/tifa_nude.glb";
   //const this_url = "./models/witch_naked.glb";
-  const this_url = "./models/new_witch_naked.glb";
+  //const this_url = "./models/new_witch_naked.glb";
+  //const this_url = "./models/lady_jayne.glb";
   loader.load(this_url, (gltf) => {
       //设置模型大小
       gltf.scene.traverse( function ( child ) {
@@ -60,7 +95,7 @@ function init() {
           if(child.name=="Sketchfab_model"){ //显示位置
         //位置移动到中央
               // child.position.x=-20.84910774230957; 
-          gltf.scene.scale.set(5, 5, 5);
+         // gltf.scene.scale.set(5, 5, 5);
           if(this_url=="./models/tiny_house.glb"){
               gltf.scene.scale.set(0.2, 0.2, 0.2);
               child.scale.x=0.2;
@@ -72,7 +107,7 @@ function init() {
               child.scale.y=0.6;
               child.scale.z=0.6;
           }else if(this_url=="./models/tifa_nude.glb"){
-          gltf.scene.scale.set(5, 5, 5);
+              gltf.scene.scale.set(5, 5, 5);
           }else if(this_url=="./models/goku.glb"){
               gltf.scene.scale.set(100, 100, 100);
           }
@@ -86,7 +121,7 @@ function init() {
       });
       scene.add(gltf.scene);
   });
-}
+//}
 </script>
   </head>
   <body>

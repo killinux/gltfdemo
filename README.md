@@ -69,3 +69,9 @@ https://github.com/killinux/8thwall-web
 A-Frame-Examples
 AR.js-examples
 three-gltf-viewer
+
+
+useful tools:  
+https://github.khronos.org/glTF-Project-Explorer/
+
+https://threejs.org/docs/#manual/zh/introduction/Loading-3D-models
