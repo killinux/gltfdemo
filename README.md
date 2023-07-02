@@ -75,3 +75,8 @@ useful tools:
 https://github.khronos.org/glTF-Project-Explorer/
 
 https://threejs.org/docs/#manual/zh/introduction/Loading-3D-models
+
+the gltf loader:  
+use glTF-Sample-Viewer
+glTF-Sample-Models
+glTF-Sample-Environments 
