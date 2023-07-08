@@ -108,5 +108,6 @@ load fbx 有点麻烦
 cg99 上的fbx转换成 glb?
 
 buy:
-https://www.cg99.com/models/detail/102998.html
+tifa:买了有mb和fbx加载还是没颜色的问题待解决  https://www.cg99.com/models/detail/102998.html
 
+threejs-import-from-blender 这个可以加载mtl和obj 使用promise的例子， 本来猜测可能是promise问题的模型加载问题导致崩溃，现在看来是scale导致的，待排查
