@@ -19,10 +19,31 @@ https://github.com/killinux/AR-Examples  当中加载gltf的部分
 ### 启动
 npm i   
 npm run dev  
+## 加载模型：  
+### 用three.js加载模型  
+	index.html 加载gltf 悟空   
+	gltf.html 最简单的加载gltf版本，清晰度不够  
+	simple.html 最简tifa，有一定清晰度 ,稍有变形  
+	fbx.html 加载fbx，但是没颜色，没成功。。。
+	如果想要高清版，使用glTF-Sample-Viewer ,这个依赖 glTF-Sample-Models和glTF-Sample-Environments
+	
+### 用aframe 加载模型  
+	aframe_model.html  使用aframe.js加载悟空
 
-index.html 加载gltf 房子  
+## ar相关的  
+### ar.js加载模型:  
+	argltf.html  ar + 加载gltf tree   
+	ar.html ar的高清叶奈法
+	arone.html 高清叶奈法，用three-gltf-viewer 改写的
+	ar_simple.html想改promise 改乱了，应该是scale的问题，待解决
 
-argltf.html  ar + 加载gltf tree   
+### aframe-ar.js加载模型：
+	ar_model.html 使用aframe.js 和 aframe-ar.js 加载75M的tifa_nude.glb ，注意a-entity 不能使用scale，否则ios 的safari崩溃  
+	models.html 最简单版本，a-entity 修改scale控制模型大小，只能加载tree.gltf 和new_witch_naked.glb ，tifa不能scale  
+
+## 其他：  
+	bezier.html 贝塞尔曲线
+
 
 ### 参考
 https://rucobloog.www2.jp/2020/12/21/ar-jsthree-js%E3%81%A7webar1/  
@@ -85,3 +106,7 @@ glTF-Sample-Environments
 load fbx 有点麻烦
 下次试试 https://github.com/facebookincubator/FBX2glTF  
 cg99 上的fbx转换成 glb?
+
+buy:
+https://www.cg99.com/models/detail/102998.html
+

@@ -16,7 +16,6 @@ const MANAGER = new LoadingManager();
 const THREE_PATH = `https://unpkg.com/three@0.${REVISION}.x`
 const DRACO_LOADER = new DRACOLoader( MANAGER ).setDecoderPath( `${THREE_PATH}/examples/jsm/libs/draco/gltf/` );
 const KTX2_LOADER = new KTX2Loader( MANAGER ).setTranscoderPath( `${THREE_PATH}/examples/jsm/libs/basis/` );
-
 import {
   AmbientLight,
   AnimationMixer,
@@ -97,60 +96,67 @@ import {
         camera.projectionMatrix.copy(arToolkitContext.getProjectionMatrix());
     });
   //const loader = new GLTFLoader();
-  const loader = new GLTFLoader( MANAGER )
-        .setCrossOrigin('anonymous')
-        .setDRACOLoader( DRACO_LOADER )
-        .setKTX2Loader( KTX2_LOADER.detectSupport( renderer ) )
-        .setMeshoptDecoder( MeshoptDecoder );
-  var obj_count=0;
-  //const this_url = "./model/tree.gltf";
-  //const this_url = "./models/tiny_house.glb";
-  //const this_url = "./models/goku.glb";
-  //const this_url = "./models2/son_goku.glb";
-  //const this_url = "./models/tifa_nude.glb";
-  //const this_url = "./models/test.glb";
-  //const this_url = "./models/witch_naked.glb";
-  const this_url = "./models/new_witch_naked.glb";
-  //const this_url = "./models/samurai_girl.glb";
   
-  loader.load(this_url, (gltf) =>{ 
-      //设置模型大小
-      //gltf.scene.scale.set(0.2, 0.2, 0.2);
-      const nameNode = gltf.scene.getObjectByName("Sketchfab_model");
-      //const nameNode = gltf.scene.getObjectByName("Yennefer_Naked_medfbx");
-      if(this_url=="./models/new_witch_naked.glb"){
-          gltf.scene.scale.set(3, 3, 3);
-      }else if(this_url=="./models/tiny_house.glb"){
-          gltf.scene.scale.set(0.002, 0.002, 0.002);
-			}else if(this_url=="./models/tifa_nude.glb"){
-                gltf.scene.scale.set(5, 5, 5);
-      }else if(this_url=="./models/goku.glb"){
-          gltf.scene.scale.set(10, 10, 10);
-        console.log("goku----->");
-      }else if(this_url=="./models2/son_goku.glb"){
-          gltf.scene.scale.set(2, 2, 2);
-        console.log("son_goku----->");
-      }
-      console.log("nameNode.position.x:"+nameNode.position.x+"---->success");
-      marker1.add(gltf.scene);
-      //scene.add(gltf.scene);
-  });
+  var obj_count=0;
+  console.log("before load----->");
+  const this_url = "./models/tifa_nude.glb";
+  //const this_url = "./models/new_witch_naked.glb";
   const marker1 = new THREE.Group();
-  scene.add(marker1);
-  const arMarkerControls = new THREEx.ArMarkerControls(arToolkitContext, marker1, {
-      type: 'pattern',
-      //patternUrl: 'data/patt.hiro',
-      patternUrl: 'hao/pattern-luna.patt'
-  });
-  requestAnimationFrame(function animate(){
-        requestAnimationFrame(animate);
-        //console.log('camera.position:',camera.position);
-        if (arToolkitSource.ready) {
-            arToolkitContext.update(arToolkitSource.domElement);
-            scene.visible = camera.visible;
-        }
-        renderer.render(scene, camera);
-    });
+
+    // new Promise((resolve) => {
+    //     const loader = new GLTFLoader( MANAGER )
+    //         .setCrossOrigin('anonymous')
+    //         .setDRACOLoader( DRACO_LOADER )
+    //         .setKTX2Loader( KTX2_LOADER.detectSupport( renderer ) )
+    //     .setMeshoptDecoder( MeshoptDecoder );
+    //     loader.load(this_url, (materials) => {
+    //         console.log("loader---->begin");
+    //         resolve(materials);
+    //         console.log("loader---->"+this_url);
+    //     });
+    // })
+    // .then((materials) => {
+    //     console.log("marker1--->add");
+    //     marker1.add(materials.scene);
+    //     scene.add(marker1);
+    //     const arMarkerControls = new THREEx.ArMarkerControls(arToolkitContext, marker1, {
+    //         type: 'pattern',
+    //         //patternUrl: 'data/patt.hiro',
+    //         patternUrl: 'hao/pattern-luna.patt'
+    //     });
+    //     /*
+    //     requestAnimationFrame(function animate(){
+    //         requestAnimationFrame(animate);
+    //         //console.log('camera.position:',camera.position);
+    //         if (arToolkitSource.ready) {
+    //             arToolkitContext.update(arToolkitSource.domElement);
+    //             scene.visible = camera.visible;
+    //         }
+    //         console.log("requestAnimationFrame  render---->")
+    //         renderer.render(scene, camera);
+    //     });
+    //     */
+    // });
+
+
+//   loader.load(this_url, (gltf) =>{ 
+//       //设置模型大小
+//       //gltf.scene.scale.set(0.2, 0.2, 0.2);
+//       const nameNode = gltf.scene.getObjectByName("Sketchfab_model");
+//       //const nameNode = gltf.scene.getObjectByName("Yennefer_Naked_medfbx");
+//       if(this_url=="./models/new_witch_naked.glb"){
+//           gltf.scene.scale.set(3, 3, 3);
+//       }else if(this_url=="./models/tifa_nude.glb"){
+//                 gltf.scene.scale.set(5, 5, 5);
+//       }
+//       console.log("nameNode.position.x:"+nameNode.position.x+"---->success");
+//       marker1.add(gltf.scene);
+//       //scene.add(gltf.scene);
+//   });
+  
+  
+  
+  
 //}
 </script>
   </head>

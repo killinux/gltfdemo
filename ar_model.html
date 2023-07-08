@@ -1,0 +1,31 @@
+<html>
+  <head>
+    <!--script src="https://aframe.io/releases/1.3.0/aframe.min.js"></script>
+    <script src="https://raw.githack.com/AR-js-org/AR.js/master/aframe/build/aframe-ar.js"></script-->
+    <script src="ajs/aframe.min.js"></script>
+    <script src="ajs/aframe-ar.js"></script>
+  </head>
+  <body style="margin: 0; overflow: hidden">
+    <!-- https://nttdocomo-developers.jp/entry/202212221200_2 -->
+    <a-scene embedded arjs vr-mode-ui="enabled: false">
+      <a-assets>
+        <!-- 3Dモデルを読み込む -->
+        <!--a-asset-item id="yennefer" src="models/new_witch_naked.glb" scale="1 1 1"></a-asset-item-->
+        <a-asset-item id="tifa" src="models/tifa_nude.glb" ></a-asset-item>
+      </a-assets>
+      <!-- マーカーを設定する -->
+      <a-marker type="pattern" url="data/hiro.patt">
+        <a-entity gltf-model="#tifa" rotation="0 0 0" ></a-entity>
+      </a-marker>
+      <!--a-marker type="pattern" url="hao/pattern-luna.patt">
+        <a-entity gltf-model="#yennefer" rotation="0 0 0" scale="2 2 2" position="0 0 0"  ></a-entity>
+      </a-marker-->
+      <a-entity camera></a-entity>
+    </a-scene>
+  </body>
+  <script>
+      //glTFの表示が暗くなる問題に対処
+     //document.querySelector("a-scene").renderer.gammaOutput=true;
+     // document.querySelector("a-scene").renderer.outputEncoding=THREE.sRGBEncoding;
+  </script>
+</html>
