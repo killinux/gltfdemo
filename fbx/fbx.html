@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0,user-scalable=no">
+    <meta name="format-detection" content="telephone=no">
+    <title>THREE.js Loader</title>
+    <style>
+        html, body{
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            margin: 0;
+            padding: 0;
+            background-color: #000;
+            font-family: Helvetica;
+        }
+        #stage, video, canvas{
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+        canvas{
+            z-index: 99;
+        }
+    </style>
+</head>
+<body>
+<div id="stage"></div>
+<script type="text/javascript" src="https://cdn.bootcss.com/eruda/1.2.6/eruda.min.js"></script>
+<script type="text/javascript" src="js/three.js"></script>
+<script type="text/javascript" src="js/inflate.min.js"></script>
+<script type="text/javascript" src="js/OrbitControls.js"></script>
+<script type="text/javascript" src="js/loader/FBXLoader.js"></script>
+<script type="text/javascript" src="js/loader/OBJLoader.js"></script>
+<script type="text/javascript" src="js/loader/MTLLoader.js"></script>
+<script type="text/javascript" src="js/loader/TGALoader.js"></script>
+<script type="text/javascript">
+   // eruda.init();
+
+    var u = navigator.userAgent;
+    var isAndroid = u.indexOf('Android') > -1 || u.indexOf('Adr') > -1; // android终端
+    var isiOS = !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/); // ios终端
+    var isWeiXin = !!u.match(/MicroMessenger/i); // 微信
+
+    var stage = document.querySelector('#stage');
+    var container;
+    var scene, camera, renderer, controls;
+    var SCREEN_WIDTH =  window.innerWidth;
+    var SCREEN_HEIGHT = window.innerHeight;
+    var angle = 90;
+    var nearest = 1;
+    var farthest = 1000;
+    var mixers = new Array();
+    var clock = new THREE.Clock();
+
+    init();
+   // initSourceWebcam();
+
+    function init(){
+        container = document.createElement('div');
+        stage.appendChild(container);
+        // 创建场景
+        scene = new THREE.Scene();
+        // 创建相机
+        camera =  new THREE.PerspectiveCamera(angle, SCREEN_WIDTH / SCREEN_HEIGHT, nearest, farthest);
+        const ambientLight = new THREE.AmbientLight(0xffffff, 0.8);
+        scene.add(ambientLight);
+        const light1  = new THREE.AmbientLight(0xFFFFFF, 0.3);
+        light1.name = 'ambient_light';
+        camera.add( light1 );
+        const light2  = new THREE.DirectionalLight(0xFFFFFF, 0.8 * Math.PI);
+        light2.position.set(0.5, 0, 0.866); // ~60º
+        light2.name = 'main_light';
+        camera.add( light2 );
+        const hemiLight = new THREE.HemisphereLight();
+        hemiLight.name = 'hemi_light';
+        camera.add(hemiLight);
+        scene.add(camera);
+        camera.position.set(20, 20, 30);
+        // 环境光
+        // scene.add(new THREE.AmbientLight(4210752, 3));
+        // 平行光
+        //给场景增加环境光
+        let Ambient = new THREE.AmbientLight(0x404040, 2);
+        scene.add(Ambient);
+        //给场景添加太阳光
+        let Sun = new THREE.DirectionalLight(0xffffff, 1);
+        Sun.position.set(20, 20, 20);
+        Sun.castShadow = true;
+        //设置相机渲染面积
+        Sun.shadow.camera.near = 0.01;
+        Sun.shadow.camera.far = 60;
+        Sun.shadow.camera.top = 22;
+        Sun.shadow.camera.bottom = -22;
+        Sun.shadow.camera.left = -35;
+        Sun.shadow.camera.right = 35;// 
+        //设置阴影分辨率
+        Sun.shadow.mapSize.width = 2048;  
+        // default
+        Sun.shadow.mapSize.height = 2048; // default
+        //阴影限制
+        Sun.shadow.radius = 1;scene.add(Sun);
+        scene.add(Sun);
+
+        var light = new THREE.DirectionalLight(16777215, 1);
+        light.position.set(0, 50, 50);
+        scene.add(light);
+        // 坐标系
+        var axes = new THREE.AxisHelper(30);
+        scene.add(axes);
+
+        scene.background = new THREE.Color(0xeaeaea);
+        // 加载提示
+        var manager = new THREE.LoadingManager();
+        //manager.addHandler( /\.tga$/i, new THREE.TGALoader() );
+        manager.onProgress = function(item, loaded, total){
+            console.log("manager onProgress:",item, loaded, total);
+        };
+        var onProgress = function(xhr){
+            if(xhr.lengthComputable){
+                var percentComplete = xhr.loaded / xhr.total * 100;
+                console.log(Math.round(percentComplete, 2) + '% downloaded');
+            }
+        };
+        var onError = function(xhr){
+            console.error(xhr);
+        };
+        THREE.Loader.Handlers.add( /\.tga$/i, new THREE.TGALoader() );
+        var fbx_loader = new THREE.FBXLoader(manager);
+        console.log(fbx_loader);
+        
+        //fbx_loader.manager.addHandler( /\.tga$/i, new THREE.TGALoader() );
+
+        // fbx静态模型
+        //fbx_loader.load('../models/luna.fbx', function(object){
+        fbx_loader.load('../models/luna/luna.fbx', function(object){
+        //fbx_loader.load('../models/tifa-nude/source/tifa.fbx', function(object){
+        //fbx_loader.load('./models/miku/miku1.fbx', function(object){
+        //fbx_loader.load('../models/tifa/PC0002_01_lod0.fbx', function(object){
+            console.log("haoning ------> add");
+            console.log(object);
+            // const textureLoader = new THREE.TextureLoader();
+            // const textureUrl =  "./model/luna/1464_HongFu_D_512.tga";
+            // const textureNormal = textureLoader.load(
+            //     textureUrl
+            // );
+            // mesh = object.children[0].clone();
+            
+            //mesh.material.map = textureNormal;
+            //console.log(mesh.material.map);
+            //mesh.material.emissive=new THREE.Color(1,1,1);
+            // mesh.material.emissiveIntensity=1;
+            // mesh.material.emissiveMap=textureNormal;
+            // console.log(object.children[0]);
+            //mesh.scale.multiplyScalar(0.1);
+            // scene.add(mesh);
+
+            // object.traverse((obj)=>{
+            //     if(obj instanceof THREE.Mesh){
+            //             obj.castShadow = true;
+            //             obj.receiveShadow = true;
+            //             obj.material.emissive=new THREE.Color(1,1,1);
+            //             obj.material.emissive=obj.material.color;
+            //             obj.material.emissiveIntensity=1;
+            //             //obj.material.emissiveMap=obj.material.map;
+            //             obj.material.emissiveMap=textureNormal;
+            //             console.log(obj.material.map);
+            //             console.log("color--->");
+            //     }}
+            // );
+
+            object.scale.multiplyScalar(0.05);
+
+            scene.add(object);
+        }, onProgress, onError);
+
+
+        // 创建渲染器
+        renderer = new THREE.WebGLRenderer({
+            antialias: true,    // 平滑效果
+            alpha: true,    // canvas背景透明
+        });
+        renderer.setPixelRatio(window.devicePixelRatio);
+        renderer.setSize(SCREEN_WIDTH, SCREEN_HEIGHT);
+        container.appendChild(renderer.domElement);
+
+        // 创建控制器
+        controls = new THREE.OrbitControls(camera, renderer.domElement);
+        controls.target.set(0, 0, 0);
+
+        animate();
+
+        window.addEventListener('resize', onWindowResize, false);
+    }
+    
+    function animate(){
+        requestAnimationFrame(animate);
+        render();
+    }
+
+    function render(){
+        var delta = clock.getDelta();
+        if (mixers.length > 0) {
+            for (var i = 0; i < mixers.length; i ++) {
+                mixers[i].update(delta);
+            }
+        }
+        controls.update();
+
+        renderer.autoClear = false
+        renderer.clear()
+        renderer.outputEncoding = null //THREE.RGBDEncoding
+        renderer.render(scene, camera)
+        //校正鱼群颜色
+        renderer.outputEncoding = THREE.GammaEncoding
+
+        renderer.render( scene, camera );
+    }
+
+    // 窗口改变重置摄像头
+    function onWindowResize(){
+        SCREEN_WIDTH = window.innerWidth;
+        SCREEN_HEIGHT = window.innerHeight;
+        renderer.setSize(SCREEN_WIDTH, SCREEN_HEIGHT);
+        camera.aspect = SCREEN_WIDTH / SCREEN_HEIGHT;
+        camera.updateProjectionMatrix();
+    }
+
+    // 获取视频流
+    function initSourceWebcam(){
+        // check API is available
+        if(navigator.mediaDevices === undefined || navigator.mediaDevices.enumerateDevices === undefined || navigator.mediaDevices.getUserMedia === undefined){
+            console.log('Not Support')
+        }
+        else {
+            // get available devices
+            navigator.mediaDevices.enumerateDevices().then(function(devices){
+                if(isiOS){
+                    navigator.mediaDevices.getUserMedia({
+                        audio: false,
+                        video: {
+                            facingMode: 'environment'
+                        }
+                    }).then(successFunc).catch(errorFunc);
+                }
+                else{
+                    var videoSourceId;
+                    for(var i = 0; i < devices.length; i++){
+                        var deviceInfo = devices[i];
+                        if(deviceInfo.kind == "videoinput" && deviceInfo.label.split(', ')[1] == "facing back"){
+                            videoSourceId = deviceInfo.deviceId;
+                        }
+                    }
+                    navigator.mediaDevices.getUserMedia({
+                        audio: false,
+                        video: {
+                            optional: [{sourceId: videoSourceId}]
+                        }
+                    }).then(successFunc).catch(errorFunc);
+                }
+            }).catch(errorFunc);
+        }
+    }
+
+    // 摄像头调起成功
+    function successFunc(stream){
+        var domElement = document.createElement('video');
+        domElement.setAttribute('autoplay', '');
+        domElement.setAttribute('muted', '');
+        domElement.setAttribute('playsinline', '');
+        domElement.style.width = document.documentElement.clientWidth + 'px';
+        domElement.style.height = document.documentElement.clientHeight + 'px';
+
+        domElement.srcObject = stream;
+        document.body.addEventListener('click', function(){
+            domElement.play();
+        });
+
+        // wait until the video stream is ready
+        var interval = setInterval(function(){
+            if(!domElement.videoWidth){
+                return;
+            }
+
+            clearInterval(interval);
+            stage.appendChild(domElement);
+        }, 1000/50);
+    }
+
+    // 摄像头调起失败
+    function errorFunc(err){
+        console.log(err);
+    }
+</script>
+</body>
+</html>

@@ -1,5 +1,5 @@
 
-### 前言
+## 前言
 想做一个 ar加载gltf的例子
 从https://sketchfab.com/  下一些gltf或者glb文件  
 用index.html 验证模型是否可用，app.js修改模型地址  
@@ -16,7 +16,7 @@ https://github.com/killinux/AR-Examples  当中加载gltf的部分
 生成patt文件和图片用来识别呈现3d的地方 
 
 
-### 启动
+## 启动
 npm i   
 npm run dev  
 ## 加载模型：  
@@ -116,3 +116,27 @@ https://github.com/killinux/threejs-loader-demo   需要继续看看fbx的表现
 glTF-Sample-Viewer 最高清的精简版，需要做一个  
 能互动  
 能动的验证  
+
+## 格式转换
+### max转glb
+max 转 fbx工具： https://anyconv.com/max-to-fbx-converter/#google_vignette
+
+把 紫霞仙子.max 转成 紫霞仙子.fbx 
+用blender 导入 紫霞仙子.fbx ，用Shading 模式检查颜色
+export glb
+如果太黑了，摄像头没打开灯光，参考 gltf.html ,把灯光都打开
+``` javascript
+const light1  = new THREE.AmbientLight(0xFFFFFF, 0.3);
+light1.name = 'ambient_light';
+camera.add( light1 );
+const light2  = new THREE.DirectionalLight(0xFFFFFF, 0.8 * Math.PI);
+light2.position.set(0.5, 0, 0.866); // ~60º
+light2.name = 'main_light';
+camera.add( light2 );
+const hemiLight = new THREE.HemisphereLight();
+hemiLight.name = 'hemi_light';
+camera.add(hemiLight);
+scene.add(camera);
+```
+blender转换位置 
+layout 里，点模型，Transform 里的 Location x，y，x设置

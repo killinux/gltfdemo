@@ -15,7 +15,12 @@ camera.position.z = 50;
 camera.position.y= 100;
 
 // 创建渲染器
-const renderer = new THREE.WebGLRenderer();
+//const renderer = new THREE.WebGLRenderer();
+const renderer =new THREE.WebGLRenderer( { alpha: true,antialias: true,precision: 'highp'} );
+renderer.useLegacyLights = true;
+  //renderer.setClearColor( 0xcccccc );
+renderer.setPixelRatio( window.devicePixelRatio );
+renderer.outputEncoding = THREE.sRGBEncoding;
 renderer.setSize( window.innerWidth, window.innerHeight );
 document.body.appendChild( renderer.domElement );
 
@@ -24,9 +29,20 @@ const scene = new THREE.Scene();
 scene.background = new THREE.Color(0xeaeaea);
 
 // 添加灯光
-const ambientLight = new THREE.AmbientLight(0xffffff, 0.8);
-scene.add(ambientLight);
+// const ambientLight = new THREE.AmbientLight(0xffffff, 0.8);
+// scene.add(ambientLight);
 
+const light1  = new THREE.AmbientLight(0xFFFFFF, 0.3);
+light1.name = 'ambient_light';
+camera.add( light1 );
+const light2  = new THREE.DirectionalLight(0xFFFFFF, 0.8 * Math.PI);
+light2.position.set(0.5, 0, 0.866); // ~60º
+light2.name = 'main_light';
+camera.add( light2 );
+const hemiLight = new THREE.HemisphereLight();
+hemiLight.name = 'hemi_light';
+camera.add(hemiLight);
+scene.add(camera);
 
 // 添加控制器
 new OrbitControls(camera, document.body);
@@ -38,11 +54,27 @@ function animate() {
 animate();
 
 const loader = new GLTFLoader();
+loader.load('./models/luna.glb', (gltf) => {
+//loader.load('./models/daochu/luna1.gltf', (gltf) => {
 //loader.load('./models/tiny_house.glb', (gltf) => {
 //loader.load('./models/com_pc0002_01_lod0.glb', (gltf) => {
-loader.load('./models/tifa_nude.glb', (gltf) => {
+//loader.load('./models/tifa_nude.glb', (gltf) => {
 //loader.load('./model/tree.gltf', (gltf) => {
+	const texLoader = new THREE.TextureLoader();
+	// const texture = texLoader.load('./models/1464_HongFu_D_512.png');// 加载手机mesh另一个颜色贴图
+	// //texture.encoding = THREE.sRGBEncoding;
+	// console.log(gltf.scene);
+	// const mesh = gltf.scene.children[ 2 ];
+	// mesh.material.map = texture; 
+	//  //mesh.material.color.set(0xffff00);
+	// console.log(mesh.material.map);
+	// console.log(mesh.material.color);
+	// console.log(mesh);
+	// console.log(mesh.userData);
+
+	console.log(gltf.scene);
     scene.add(gltf.scene);
+    //scene.add(mesh);
 });	
 </script>
   </head>
