@@ -11,8 +11,8 @@ import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls';
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader';
 const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
 camera.position.x = 150;
-camera.position.z = 50;
-camera.position.y= 100;
+camera.position.z = 250;
+camera.position.y= 150;
 
 // 创建渲染器
 //const renderer = new THREE.WebGLRenderer();
@@ -31,7 +31,6 @@ scene.background = new THREE.Color(0xeaeaea);
 // 添加灯光
 // const ambientLight = new THREE.AmbientLight(0xffffff, 0.8);
 // scene.add(ambientLight);
-
 const light1  = new THREE.AmbientLight(0xFFFFFF, 0.3);
 light1.name = 'ambient_light';
 camera.add( light1 );
@@ -52,29 +51,16 @@ function animate() {
     renderer.render( scene, camera );
 }
 animate();
-
 const loader = new GLTFLoader();
-loader.load('./models/luna.glb', (gltf) => {
+//loader.load('./models/luna.glb', (gltf) => {
 //loader.load('./models/daochu/luna1.gltf', (gltf) => {
 //loader.load('./models/tiny_house.glb', (gltf) => {
-//loader.load('./models/com_pc0002_01_lod0.glb', (gltf) => {
+loader.load('./models/com_pc0002_01_lod0.glb', (gltf) => {
 //loader.load('./models/tifa_nude.glb', (gltf) => {
 //loader.load('./model/tree.gltf', (gltf) => {
-	const texLoader = new THREE.TextureLoader();
-	// const texture = texLoader.load('./models/1464_HongFu_D_512.png');// 加载手机mesh另一个颜色贴图
-	// //texture.encoding = THREE.sRGBEncoding;
-	// console.log(gltf.scene);
-	// const mesh = gltf.scene.children[ 2 ];
-	// mesh.material.map = texture; 
-	//  //mesh.material.color.set(0xffff00);
-	// console.log(mesh.material.map);
-	// console.log(mesh.material.color);
-	// console.log(mesh);
-	// console.log(mesh.userData);
-
-	console.log(gltf.scene);
+    gltf.scene.scale.set(100, 100, 100);
+	  console.log(gltf.scene);
     scene.add(gltf.scene);
-    //scene.add(mesh);
 });	
 </script>
   </head>

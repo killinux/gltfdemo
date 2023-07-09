@@ -38,7 +38,7 @@
     scene.add( grid );
     // model
     //var map1 = new THREE.TextureLoader().load('models/tifa/textures/PC0002_01_Skin_N.tga');
-    var map1 = new THREE.TextureLoader().load('models/luna/1464_HongFu_D_512_1.tga');
+    //var map1 = new THREE.TextureLoader().load('models/luna/1464_HongFu_D_512.tga');
     
     //THREE.Loader.Handlers.add( /\.tga$/i, new TGALoader() );
     var loader = new FBXLoader();
@@ -47,31 +47,32 @@
 
     //loader.load( 'models/Tifa78/Documents/1.fbx', function ( object ) {
     //loader.load( 'models/luna/luna.fbx', function ( object ) {
+    loader.load( 'models/luna/zixia.fbx', function ( object ) {
     //loader.load( 'models/tifa-nude/source/tifa.fbx', function ( object ) {
-    loader.load( 'models/tifa/PC0002_01_lod0.fbx', function ( object ) {
+    //loader.load( 'models/tifa/PC0002_01_lod0.fbx', function ( object ) {
     //loader.load( 'models/stand/stand.fbx', function ( object ) {
       console.log("haohao -->");
       console.log(object);
      // object.children[0].material.map = map1;
-      object.traverse( function ( child ) {
-        //child.material.map = map1;
-        if ( child.isMesh ) {
-          child.material.emissive=child.material.color;
-          child.material.emissiveIntensity=1;
-          child.material.emissiveMap=child.material.map;
-          console.log("hehe--->");
-          console.log(child);
-          console.log("hehe--->end");
-          child.castShadow = true;
-          child.receiveShadow = true;
-          child.material.alphaTest = 0.5;
-          child.material.transparent = false
-        }
-      } );
-        object.rotation.y = Math.PI/2;
-        //object.rotation.x = -Math.PI/2 - Math.PI/12;
-        object.position.set(0, -0.15, 0.3);
-        console.log(object.position);
+      // object.traverse( function ( child ) {
+      //   //child.material.map = map1;
+      //   if ( child.isMesh ) {
+      //     child.material.emissive=child.material.color;
+      //     child.material.emissiveIntensity=1;
+      //     child.material.emissiveMap=child.material.map;
+      //     console.log("hehe--->");
+      //     console.log(child);
+      //     console.log("hehe--->end");
+      //     child.castShadow = true;
+      //     child.receiveShadow = true;
+      //     child.material.alphaTest = 0.5;
+      //     child.material.transparent = false
+      //   }
+      // } );
+      //   object.rotation.y = Math.PI/2;
+      //   //object.rotation.x = -Math.PI/2 - Math.PI/12;
+      //   object.position.set(0, -0.15, 0.3);
+      //   console.log(object.position);
         object.scale.set(.003, .003, .003);
         scene.add( object );
     } );

@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0,user-scalable=no">
     <meta name="format-detection" content="telephone=no">
-    <title>THREE.js Loader</title>
+    <title>fbx loader from sketchfab，tifa</title>
     <style>
         html, body{
             width: 100%;
@@ -67,19 +67,20 @@
         scene = new THREE.Scene();
         // 创建相机
         camera =  new THREE.PerspectiveCamera(angle, SCREEN_WIDTH / SCREEN_HEIGHT, nearest, farthest);
-        const ambientLight = new THREE.AmbientLight(0xffffff, 0.8);
-        scene.add(ambientLight);
-        const light1  = new THREE.AmbientLight(0xFFFFFF, 0.3);
-        light1.name = 'ambient_light';
-        camera.add( light1 );
-        const light2  = new THREE.DirectionalLight(0xFFFFFF, 0.8 * Math.PI);
-        light2.position.set(0.5, 0, 0.866); // ~60º
-        light2.name = 'main_light';
-        camera.add( light2 );
-        const hemiLight = new THREE.HemisphereLight();
-        hemiLight.name = 'hemi_light';
-        camera.add(hemiLight);
-        scene.add(camera);
+        //如果变黑请打开灯光
+        // const ambientLight = new THREE.AmbientLight(0xffffff, 0.8);
+        // scene.add(ambientLight);
+        // const light1  = new THREE.AmbientLight(0xFFFFFF, 0.3);
+        // light1.name = 'ambient_light';
+        // camera.add( light1 );
+        // const light2  = new THREE.DirectionalLight(0xFFFFFF, 0.8 * Math.PI);
+        // light2.position.set(0.5, 0, 0.866); // ~60º
+        // light2.name = 'main_light';
+        // camera.add( light2 );
+        // const hemiLight = new THREE.HemisphereLight();
+        // hemiLight.name = 'hemi_light';
+        // camera.add(hemiLight);
+        // scene.add(camera);
         camera.position.set(20, 20, 30);
         // 环境光
         // scene.add(new THREE.AmbientLight(4210752, 3));
@@ -134,13 +135,12 @@
         console.log(fbx_loader);
         
         //fbx_loader.manager.addHandler( /\.tga$/i, new THREE.TGALoader() );
-
         // fbx静态模型
         //fbx_loader.load('../models/luna.fbx', function(object){
-        fbx_loader.load('../models/luna/luna.fbx', function(object){
-        //fbx_loader.load('../models/tifa-nude/source/tifa.fbx', function(object){
+        //fbx_loader.load('../models/luna/luna.fbx', function(object){
         //fbx_loader.load('./models/miku/miku1.fbx', function(object){
         //fbx_loader.load('../models/tifa/PC0002_01_lod0.fbx', function(object){
+        fbx_loader.load('../models/tifa-nude/source/tifa.fbx', function(object){
             console.log("haoning ------> add");
             console.log(object);
             // const textureLoader = new THREE.TextureLoader();
@@ -149,32 +149,7 @@
             //     textureUrl
             // );
             // mesh = object.children[0].clone();
-            
-            //mesh.material.map = textureNormal;
-            //console.log(mesh.material.map);
-            //mesh.material.emissive=new THREE.Color(1,1,1);
-            // mesh.material.emissiveIntensity=1;
-            // mesh.material.emissiveMap=textureNormal;
-            // console.log(object.children[0]);
-            //mesh.scale.multiplyScalar(0.1);
-            // scene.add(mesh);
-
-            // object.traverse((obj)=>{
-            //     if(obj instanceof THREE.Mesh){
-            //             obj.castShadow = true;
-            //             obj.receiveShadow = true;
-            //             obj.material.emissive=new THREE.Color(1,1,1);
-            //             obj.material.emissive=obj.material.color;
-            //             obj.material.emissiveIntensity=1;
-            //             //obj.material.emissiveMap=obj.material.map;
-            //             obj.material.emissiveMap=textureNormal;
-            //             console.log(obj.material.map);
-            //             console.log("color--->");
-            //     }}
-            // );
-
             object.scale.multiplyScalar(0.05);
-
             scene.add(object);
         }, onProgress, onError);
 
