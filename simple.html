@@ -50,7 +50,8 @@ const KTX2_LOADER = new KTX2Loader( MANAGER ).setTranscoderPath( `${THREE_PATH}/
   // 创建场景
   const scene = new THREE.Scene();
   scene.environment = neutralEnvironment;
-  scene.background = new THREE.Color(0x191919);
+  //scene.background = new THREE.Color(0x191919);
+  scene.background = new THREE.Color(0xeaeaea);
   //scene.background = new THREE.Color(0xeaeaea);
   // 添加灯光
     // const light1  = new THREE.AmbientLight(0xFFFFFF, 0.3);
@@ -84,10 +85,11 @@ const KTX2_LOADER = new KTX2Loader( MANAGER ).setTranscoderPath( `${THREE_PATH}/
   //const this_url = "./models/tiny_house.glb";
   //const this_url = "./models/goku.glb";
   //const this_url = "./models2/son_goku.glb";
-  const this_url = "./models/tifa_nude.glb";
   //const this_url = "./models/witch_naked.glb";
   //const this_url = "./models/new_witch_naked.glb";
   //const this_url = "./models/lady_jayne.glb";
+  const this_url = "./models/tifa_nude.glb";
+  //const this_url = "./models/cg99/tifa_dress_175822.glb";
   loader.load(this_url, (gltf) => {
       //设置模型大小
       gltf.scene.traverse( function ( child ) {

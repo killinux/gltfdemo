@@ -17,6 +17,7 @@
         import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader';
        // import { GLTFLoader } from 'three/examples/jsm/loaders/FBXLoader';
         import { MTLLoader } from 'three/examples/jsm/loaders/MTLLoader';
+        import { OBJLoader } from 'three/examples/jsm/loaders/OBJLoader';
        // import Stats from '//techbrood.com/threejs/examples/jsm/libs/stats.module.js';
         //import { OrbitControls } from '//techbrood.com/threejs/examples/jsm/controls/OrbitControls.js';
         // import { FBXLoader } from '//techbrood.com/threejs/examples/jsm/loaders/FBXLoader.js';
@@ -42,18 +43,18 @@
             var pointLight = new THREE.PointLight(0xffffff, 0.8);
             camera.add(pointLight);
             scene.add(camera); // This default light is added to scene
-            
+            new OrbitControls(camera, document.body);
             // Material and loaders
             mtlLoader = new MTLLoader();
-            mtlLoader.setPath('path_to_your_files/'); // Path to your .mtl file
-            mtlLoader.load('your_model.mtl', function (materials) {
+            mtlLoader.setPath('models/fbx/ue4/Mesh/OBJ/'); // Path to your .mtl file
+            mtlLoader.load('SK_MedievalLady.mtl', function (materials) {
 
                 materials.preload();
 
-                objLoader = new THREE.OBJLoader();
+                objLoader = new OBJLoader();
                 objLoader.setMaterials(materials);
-                objLoader.setPath('path_to_your_files/'); // Path to your .obj file
-                objLoader.load('your_model.obj', function (object) {
+                objLoader.setPath('models/fbx/ue4/Mesh/OBJ/'); // Path to your .obj file
+                objLoader.load('SK_MedievalLady.obj', function (object) {
 
                     scene.add(object);
                     animate();

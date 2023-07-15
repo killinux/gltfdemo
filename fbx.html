@@ -21,18 +21,32 @@
     document.body.appendChild( container );
     camera = new THREE.PerspectiveCamera( 45, window.innerWidth / window.innerHeight, 1, 2000 );
     camera.position.set( 0, 1.6, 0 );
+    const light1  = new THREE.AmbientLight(0xFFFFFF, 0.3);
+
     scene = new THREE.Scene();
+    light1.name = 'ambient_light';
+    camera.add( light1 );
+    const light2  = new THREE.DirectionalLight(0xFFFFFF, 0.8 * Math.PI);
+    light2.position.set(0.5, 0, 0.866); // ~60º
+    light2.name = 'main_light';
+    camera.add( light2 );
+    const hemiLight = new THREE.HemisphereLight();
+    hemiLight.name = 'hemi_light';
+    camera.add(hemiLight);
+    scene.add(camera);
+
     scene.background = new THREE.Color( 0xa0a0a0 );
     scene.fog = new THREE.Fog( 0xa0a0a0, 200, 1000 );
-    light = new THREE.HemisphereLight( 0xffffff, 0x444444 );
-    light.position.set( 0, 20, 0 );
-    scene.add( light );
-    light = new THREE.DirectionalLight( 0xffffff );
-    light.position.set( 0, 20, 10 );
-    light.castShadow = true;
-    scene.add( light );
+    // light = new THREE.HemisphereLight( 0xffffff, 0x444444 );
+    // light.position.set( 0, 20, 0 );
+    // scene.add( light );
+    // light = new THREE.DirectionalLight( 0xffffff );
+    // light.position.set( 0, 20, 10 );
+    // light.castShadow = true;
+    // scene.add( light );
 
-    var grid = new THREE.GridHelper( 5, 20, 0x000000, 0x000000 );
+    //var grid = new THREE.GridHelper( 5, 20, 0x000000, 0x000000 );
+    var grid = new THREE.GridHelper( 2000, 20, 0x000000, 0x000000 );
     grid.material.opacity = 0.2;
     grid.material.transparent = true;
     scene.add( grid );
@@ -47,28 +61,30 @@
 
     //loader.load( 'models/Tifa78/Documents/1.fbx', function ( object ) {
     //loader.load( 'models/luna/luna.fbx', function ( object ) {
-    loader.load( 'models/luna/zixia.fbx', function ( object ) {
+    //loader.load( 'models/luna/zixia.fbx', function ( object ) {
+    loader.load( 'models/fbx/tifa/tifa.fbx', function ( object ) {
     //loader.load( 'models/tifa-nude/source/tifa.fbx', function ( object ) {
     //loader.load( 'models/tifa/PC0002_01_lod0.fbx', function ( object ) {
     //loader.load( 'models/stand/stand.fbx', function ( object ) {
       console.log("haohao -->");
       console.log(object);
      // object.children[0].material.map = map1;
-      // object.traverse( function ( child ) {
+       object.traverse( function ( child ) {
       //   //child.material.map = map1;
-      //   if ( child.isMesh ) {
-      //     child.material.emissive=child.material.color;
-      //     child.material.emissiveIntensity=1;
-      //     child.material.emissiveMap=child.material.map;
-      //     console.log("hehe--->");
-      //     console.log(child);
-      //     console.log("hehe--->end");
-      //     child.castShadow = true;
-      //     child.receiveShadow = true;
-      //     child.material.alphaTest = 0.5;
-      //     child.material.transparent = false
-      //   }
-      // } );
+        if ( child.isMesh ) {
+          //child.material.emissiveMap.encoding = THREE.sRGBEncoding;
+          child.material.emissive=child.material.color;
+          child.material.emissiveIntensity=1;
+          child.material.emissiveMap=child.material.map;
+          console.log("hehe--->");
+          console.log(child);
+          console.log("hehe--->end");
+          child.castShadow = true;
+          child.receiveShadow = true;
+          child.material.alphaTest = 0.5;
+          child.material.transparent = false
+        }
+       } );
       //   object.rotation.y = Math.PI/2;
       //   //object.rotation.x = -Math.PI/2 - Math.PI/12;
       //   object.position.set(0, -0.15, 0.3);
@@ -76,10 +92,14 @@
         object.scale.set(.003, .003, .003);
         scene.add( object );
     } );
-    renderer = new THREE.WebGLRenderer( { antialias: true } );
+    //renderer = new THREE.WebGLRenderer( { antialias: true } );
+    renderer =new THREE.WebGLRenderer( { alpha: true,antialias: true,precision: 'highp'} );
+   // const renderer =new THREE.WebGLRenderer( { alpha: true,antialias: true,precision: 'highp'} );
+    //renderer.outputEncoding = THREE.sRGBEncoding;
+    renderer.useLegacyLights = true;
     renderer.setPixelRatio( window.devicePixelRatio );
     renderer.setSize( window.innerWidth, window.innerHeight );
-    renderer.shadowMap.enabled = true;
+    //renderer.shadowMap.enabled = true;
     container.appendChild( renderer.domElement );
     controls = new OrbitControls( camera, renderer.domElement );
     controls.target.set( 0, 0, 0 );

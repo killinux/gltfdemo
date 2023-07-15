@@ -52,12 +52,17 @@ function animate() {
 }
 animate();
 const loader = new GLTFLoader();
-//loader.load('./models/luna.glb', (gltf) => {
-//loader.load('./models/daochu/luna1.gltf', (gltf) => {
-//loader.load('./models/tiny_house.glb', (gltf) => {
-loader.load('./models/com_pc0002_01_lod0.glb', (gltf) => {
-//loader.load('./models/tifa_nude.glb', (gltf) => {
-//loader.load('./model/tree.gltf', (gltf) => {
+//const this_url="./models/luna.glb";
+//const this_url="./models/tifa_nude.glb";
+//const this_url="./models/cg99/tifa_102998.glb";
+//const this_url="./models/cg99/anime_head.glb";
+//const this_url="./models/daochu/luna1.gltf";
+//const this_url="./models/com_pc0002_01_lod0.glb";
+//const this_url="./model/tree.gltf";
+const this_url="./models/cg99/tifa_dress_175822.glb";
+console.log(this_url);
+loader.load(this_url, (gltf) => {
+  
     gltf.scene.scale.set(100, 100, 100);
 	  console.log(gltf.scene);
     scene.add(gltf.scene);
