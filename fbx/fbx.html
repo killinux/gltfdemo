@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0,user-scalable=no">
     <meta name="format-detection" content="telephone=no">
-    <title>fbx loader from sketchfab，tifa</title>
+    <title>fbx/fbx.html</title>
     <style>
         html, body{
             width: 100%;
@@ -132,8 +132,15 @@
         };
         //THREE.Loader.Handlers.add( /\.tga$/i, new THREE.TGALoader() );
         //var fbx_loader = new THREE.FBXLoader(manager);
-        var fbx_loader = new THREE.FBXLoader();
-        console.log(fbx_loader);
+
+        // const manager = new THREE.LoadingManager();
+        manager.addHandler(/\.tga$/i, new THREE.TGALoader());
+        const fbx_loader = new THREE.FBXLoader(manager);
+        //const fbx_loader = new THREE.FBXLoader();
+  
+
+        //var fbx_loader = new THREE.FBXLoader();
+        console.log(fbx_loader.manager);
        // fbx_loader.manager.addHandler( /\.tga$/i, new TGALoader() );
         console.log(fbx_loader);
         
@@ -143,27 +150,28 @@
         //fbx_loader.load('../models/luna/luna.fbx', function(object){
 
         //fbx_loader.load('../models/tifa/PC0002_01_lod0.fbx', function(object){
-        //fbx_loader.load('../models/tifa-nude/source/tifa.fbx', function(object){
+        fbx_loader.load('../models/tifa-nude/source/tifa.fbx', function(object){
+        //fbx_loader.load('../models/sketch/source/tifa.fbx', function(object){
         //fbx_loader.load('../models/fbx/cg99.fbx', function(object){
        // fbx_loader.load('../models/fbx/khsb.fbx', function(object){
-        fbx_loader.load('../models/fbx/tifa/tifa.fbx', function(object){
+        //fbx_loader.load('../models/fbx/tifa/tifa.fbx', function(object){
        // fbx_loader.load('../models/Tifa78/Documents/1.fbx', function(object){
-            object.traverse( function ( child ) {
-            //   //child.material.map = map1;
-                if ( child.isMesh ) {
-                //child.material.emissiveMap.encoding = THREE.sRGBEncoding;
-                child.material.emissive=child.material.color;
-                child.material.emissiveIntensity=1;
-                child.material.emissiveMap=child.material.map;
-                console.log("hehe--->");
-                console.log(child);
-                console.log("hehe--->end");
-                child.castShadow = true;
-                child.receiveShadow = true;
-                child.material.alphaTest = 0.5;
-                child.material.transparent = false
-                }
-            } );
+            // object.traverse( function ( child ) {
+            // //   //child.material.map = map1;
+            //     if ( child.isMesh ) {
+            //     //child.material.emissiveMap.encoding = THREE.sRGBEncoding;
+            //     child.material.emissive=child.material.color;
+            //     child.material.emissiveIntensity=1;
+            //     child.material.emissiveMap=child.material.map;
+            //     console.log("hehe--->");
+            //     console.log(child);
+            //     console.log("hehe--->end");
+            //     child.castShadow = true;
+            //     child.receiveShadow = true;
+            //     child.material.alphaTest = 0.5;
+            //     child.material.transparent = false
+            //     }
+            // } );
             console.log("haoning ------> add");
             console.log(object);
             // const textureLoader = new THREE.TextureLoader();
@@ -172,8 +180,9 @@
             //     textureUrl
             // );
             // mesh = object.children[0].clone();
-            //object.scale.multiplyScalar(0.05);
+            object.scale.multiplyScalar(0.05);
             scene.add(object);
+        //});
         }, onProgress, onError);
 
 

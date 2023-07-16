@@ -8,6 +8,8 @@ import * as THREE from 'three';
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls';
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js';
 import { KTX2Loader } from 'three/examples/jsm/loaders/KTX2Loader.js';
+//import { TextureLoader } from 'three/examples/jsm/loaders/TextureLoader.js';
+
 import { DRACOLoader } from 'three/examples/jsm/loaders/DRACOLoader.js';
 import { MeshoptDecoder } from 'three/examples/jsm/libs/meshopt_decoder.module.js';
 import { EXRLoader } from 'three/examples/jsm/loaders/EXRLoader.js';
@@ -23,10 +25,9 @@ const KTX2_LOADER = new KTX2Loader( MANAGER ).setTranscoderPath( `${THREE_PATH}/
   camera.position.x = -50;
   camera.position.z = 50;
   camera.position.y= 50;
-
   // 创建渲染器
   const renderer =new THREE.WebGLRenderer( { alpha: true,antialias: true,precision: 'highp'} );
-  renderer.useLegacyLights = false;
+  renderer.useLegacyLights = true;
   renderer.outputEncoding = THREE.sRGBEncoding;
   //renderer.setClearColor( 0xcccccc );
   renderer.setPixelRatio( window.devicePixelRatio );
@@ -44,27 +45,23 @@ const KTX2_LOADER = new KTX2Loader( MANAGER ).setTranscoderPath( `${THREE_PATH}/
   const canvas = renderer.domElement;
   camera.aspect = canvas.clientWidth / canvas.clientHeight;
   camera.updateProjectionMatrix();
-  //renderer.setSize( window.innerWidth, window.innerHeight );
-  
-
   // 创建场景
   const scene = new THREE.Scene();
   scene.environment = neutralEnvironment;
   //scene.background = new THREE.Color(0x191919);
   scene.background = new THREE.Color(0xeaeaea);
-  //scene.background = new THREE.Color(0xeaeaea);
   // 添加灯光
-    // const light1  = new THREE.AmbientLight(0xFFFFFF, 0.3);
-    // light1.name = 'ambient_light';
-    // camera.add( light1 );
-    // const light2  = new THREE.DirectionalLight(0xFFFFFF, 0.8 * Math.PI);
-    // light2.position.set(0.5, 0, 0.866); // ~60º
-    // light2.name = 'main_light';
-    // camera.add( light2 );
-    // const hemiLight = new THREE.HemisphereLight();
-    // hemiLight.name = 'hemi_light';
-    // camera.add(hemiLight);
-    // scene.add(camera);
+    const light1  = new THREE.AmbientLight(0xFFFFFF, 0.3);
+    light1.name = 'ambient_light';
+    camera.add( light1 );
+    const light2  = new THREE.DirectionalLight(0xFFFFFF, 0.8 * Math.PI);
+    light2.position.set(0.5, 0, 0.866); // ~60º
+    light2.name = 'main_light';
+    camera.add( light2 );
+    const hemiLight = new THREE.HemisphereLight();
+    hemiLight.name = 'hemi_light';
+    camera.add(hemiLight);
+    scene.add(camera);
   // 添加控制器 有了这个才能移动
   new OrbitControls(camera, document.body);
   function animate() {
@@ -72,14 +69,14 @@ const KTX2_LOADER = new KTX2Loader( MANAGER ).setTranscoderPath( `${THREE_PATH}/
       renderer.render( scene, camera );
   }
   animate();
-
-  //const loader = new GLTFLoader();
   const loader = new GLTFLoader( MANAGER )
         .setCrossOrigin('anonymous')
         .setDRACOLoader( DRACO_LOADER )
         .setKTX2Loader( KTX2_LOADER.detectSupport( renderer ) )
         .setMeshoptDecoder( MeshoptDecoder );
-
+  // const textureLoader = new THREE.TextureLoader();
+  // const textureNormal = textureLoader.load("./models/cg99/oho/PC0002_01_PurpleDress_C.jpg");
+  
   var obj_count=0;
   //const this_url = "./model/tree.gltf";
   //const this_url = "./models/tiny_house.glb";
@@ -88,37 +85,46 @@ const KTX2_LOADER = new KTX2Loader( MANAGER ).setTranscoderPath( `${THREE_PATH}/
   //const this_url = "./models/witch_naked.glb";
   //const this_url = "./models/new_witch_naked.glb";
   //const this_url = "./models/lady_jayne.glb";
-  const this_url = "./models/tifa_nude.glb";
+  //const this_url = "./models/tifa_nude.glb";
   //const this_url = "./models/cg99/tifa_dress_175822.glb";
+  const this_url = "./models/cg99/tifa_716.glb";
+  //const this_url = "./models/cg99/tifa_ziyi.gltf";
+  //const this_url = "./models/cg99/tifa_102998.glb";
+  console.log(this_url);
   loader.load(this_url, (gltf) => {
-      //设置模型大小
+      console.log(gltf.scene);
       gltf.scene.traverse( function ( child ) {
+          // if(child.name=="Submesh_8"){
+          //   console.log(child);
+          //   console.log("this is Submesh_8 --->");
+          //   child.material.emissive=child.material.color;
+          //   child.material.emissiveIntensity=1;
+          //   child.material.emissiveMap=child.material.map;
+          // }
           obj_count++;
-          if(child.name=="Sketchfab_model"){ //显示位置
-        //位置移动到中央
-              // child.position.x=-20.84910774230957; 
-         // gltf.scene.scale.set(5, 5, 5);
-          if(this_url=="./models/tiny_house.glb"){
-              gltf.scene.scale.set(0.2, 0.2, 0.2);
-              child.scale.x=0.2;
-              child.scale.y=0.2;
-              child.scale.z=0.2;
-          //}else if(this_url=="./models/witch_naked.glb"){
-          }else if(this_url=="./models/new_witch_naked.glb"){
-              child.scale.x=0.6;
-              child.scale.y=0.6;
-              child.scale.z=0.6;
-          }else if(this_url=="./models/tifa_nude.glb"){
-              gltf.scene.scale.set(5, 5, 5);
-          }else if(this_url=="./models/goku.glb"){
-              gltf.scene.scale.set(100, 100, 100);
-          }
-          console.log("Sketchfab_model.position.x:"+child.position.x);
-          console.log("Sketchfab_model.position.y:"+child.position.y);
-          console.log("Sketchfab_model.position.z:"+child.position.z);
-          console.log("Sketchfab_model.x:"+child.scale.x);//显示大小
-          console.log("Sketchfab_model.y:"+child.scale.y);
-          console.log("Sketchfab_model.z:"+child.scale.z);
+          //if(child.name=="Sketchfab_model"){
+          if(child.isMesh){
+            //add by hao https://docs.blender.org/manual/en/2.80/addons/io_scene_gltf2.html
+            
+            // child.material.emissive=child.material.color;
+            // child.material.emissiveIntensity=1;
+            // child.material.emissiveMap=child.material.map;
+            if(this_url=="./models/tiny_house.glb"){
+                gltf.scene.scale.set(0.2, 0.2, 0.2);
+                child.scale.x=0.2;
+                child.scale.y=0.2;
+                child.scale.z=0.2;
+            }else if(this_url=="./models/new_witch_naked.glb"){
+                child.scale.x=0.6;
+                child.scale.y=0.6;
+                child.scale.z=0.6;
+            }else if(this_url=="./models/tifa_nude.glb"){
+                gltf.scene.scale.set(5, 5, 5);
+            }else if(this_url=="./models/goku.glb"){
+                gltf.scene.scale.set(100, 100, 100);
+            }else if(this_url=="./models/cg99/tifa_dress_175822.glb" ||this_url=="./models/cg99/tifa_716.glb"||this_url=="./models/cg99/tifa_102998.glb"){
+                gltf.scene.scale.set(20, 20, 20);
+            }
           }
       });
       scene.add(gltf.scene);

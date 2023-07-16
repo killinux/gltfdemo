@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="favicon.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>load glb demo</title>
+    <title>gltf.html</title>
 <script type="module">
 import * as THREE from 'three';
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls';
@@ -59,10 +59,18 @@ const loader = new GLTFLoader();
 //const this_url="./models/daochu/luna1.gltf";
 //const this_url="./models/com_pc0002_01_lod0.glb";
 //const this_url="./model/tree.gltf";
-const this_url="./models/cg99/tifa_dress_175822.glb";
+//const this_url="./models/cg99/tifa_dress_175822.glb";
+const this_url="./models/cg99/tifa_ziyi.glb";
+//const this_url="./models/cg99/tifa_102998.glb";
 console.log(this_url);
 loader.load(this_url, (gltf) => {
-  
+    // gltf.scene.traverse( function ( child ) {
+    //   if(child.isMesh){
+    //       child.material.emissive=child.material.color;
+    //       child.material.emissiveIntensity=1;
+    //       child.material.emissiveMap=child.material.map;
+    //   }
+    // });
     gltf.scene.scale.set(100, 100, 100);
 	  console.log(gltf.scene);
     scene.add(gltf.scene);

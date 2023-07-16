@@ -142,3 +142,35 @@ scene.add(camera);
 ```
 blender转换位置 
 layout 里，点模型，Transform 里的 Location x，y，x设置
+
+##  blender要看的内容
+cg99下的模型 是fbx格式的
+比如 【CG99】175822-蒂法紫色裙子模型-fbx-2020-188859.zip
+
+在blender贴图的时候，有可能是需要 “自发光”的。
+An Image Texture node can be connected to an Emission shader node, and optionally combined with properties from a Principled BSDF node by way of an Add shader node.
+
+If the glTF exporter finds an image connected to the Emission shader node, it will export that image as the glTF material’s emissive texture.
+
+https://docs.blender.org/manual/en/2.80/addons/io_scene_gltf2.html
+
+需要在shading 模式下， Add Shader  ---->Emission -----> color加载图片才行 
+
+
+或者
+
+```
+loader.load(this_url, (gltf) => {
+      console.log(gltf.scene);
+      gltf.scene.traverse( function ( child ) {
+      		if(child.isMesh){
+				child.material.emissive=child.material.color;
+				child.material.emissiveIntensity=1;
+				child.material.emissiveMap=child.material.map;
+
+```
+
+才能显示
+
+
+

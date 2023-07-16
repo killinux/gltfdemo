@@ -4,13 +4,20 @@
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="favicon.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>load glb demo</title>
+    <title>fbx.html</title>
 <script type="module">
-  import * as THREE from '//techbrood.com/threejs/build/three.module.js';
-  import Stats from '//techbrood.com/threejs/examples/jsm/libs/stats.module.js';
-  import { OrbitControls } from '//techbrood.com/threejs/examples/jsm/controls/OrbitControls.js';
-  import { FBXLoader } from '//techbrood.com/threejs/examples/jsm/loaders/FBXLoader.js';
-  import { TGALoader } from '//techbrood.com/threejs/examples/jsm/loaders/TGALoader.js';
+  // import * as THREE from '//techbrood.com/threejs/build/three.module.js';
+  // import Stats from '//techbrood.com/threejs/examples/jsm/libs/stats.module.js';
+  // import { OrbitControls } from '//techbrood.com/threejs/examples/jsm/controls/OrbitControls.js';
+  // import { FBXLoader } from '//techbrood.com/threejs/examples/jsm/loaders/FBXLoader.js';
+  // import { TGALoader } from '//techbrood.com/threejs/examples/jsm/loaders/TGALoader.js';
+  import * as THREE from 'three/build/three.module';
+  import Stats from 'three/examples/jsm/libs/stats.module';
+  import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls';
+  import { FBXLoader } from 'three/examples/jsm/loaders/FBXLoader';
+  import { TGALoader } from 'three/examples/jsm/loaders/TGALoader';
+console.log("fbx.html");
+
   var container, stats, controls;
   var camera, scene, renderer, light;
 
@@ -37,13 +44,13 @@
 
     scene.background = new THREE.Color( 0xa0a0a0 );
     scene.fog = new THREE.Fog( 0xa0a0a0, 200, 1000 );
-    // light = new THREE.HemisphereLight( 0xffffff, 0x444444 );
-    // light.position.set( 0, 20, 0 );
-    // scene.add( light );
-    // light = new THREE.DirectionalLight( 0xffffff );
-    // light.position.set( 0, 20, 10 );
-    // light.castShadow = true;
-    // scene.add( light );
+    light = new THREE.HemisphereLight( 0xffffff, 0x444444 );
+    light.position.set( 0, 20, 0 );
+    scene.add( light );
+    light = new THREE.DirectionalLight( 0xffffff );
+    light.position.set( 0, 20, 10 );
+    light.castShadow = true;
+    scene.add( light );
 
     //var grid = new THREE.GridHelper( 5, 20, 0x000000, 0x000000 );
     var grid = new THREE.GridHelper( 2000, 20, 0x000000, 0x000000 );
@@ -69,6 +76,8 @@
       console.log("haohao -->");
       console.log(object);
      // object.children[0].material.map = map1;
+
+
        object.traverse( function ( child ) {
       //   //child.material.map = map1;
         if ( child.isMesh ) {
@@ -85,6 +94,8 @@
           child.material.transparent = false
         }
        } );
+
+
       //   object.rotation.y = Math.PI/2;
       //   //object.rotation.x = -Math.PI/2 - Math.PI/12;
       //   object.position.set(0, -0.15, 0.3);
@@ -95,7 +106,7 @@
     //renderer = new THREE.WebGLRenderer( { antialias: true } );
     renderer =new THREE.WebGLRenderer( { alpha: true,antialias: true,precision: 'highp'} );
    // const renderer =new THREE.WebGLRenderer( { alpha: true,antialias: true,precision: 'highp'} );
-    //renderer.outputEncoding = THREE.sRGBEncoding;
+    renderer.outputEncoding = THREE.sRGBEncoding;
     renderer.useLegacyLights = true;
     renderer.setPixelRatio( window.devicePixelRatio );
     renderer.setSize( window.innerWidth, window.innerHeight );
