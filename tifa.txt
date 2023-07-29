@@ -151,9 +151,31 @@ dress  材质改名 Material.dress
 
 
 
+##基本操作
+###
+建立父子关系 https://www.bilibili.com/video/BV1Q44y1P7t4/?spm_id_from=333.337.search-card.all.click&vd_source=1ed400aa8fdc6fe03ecfa7ce0fc2c692  
+shift 选择物体
+control + p   建立父子关系
+alt + p 解除父子关系
 
+编辑模式或者，tab， 选择面，拉伸
+g移动，r旋转，s伸缩
+shift a添加 
 
+123 点线面的选择
 
+选择 2个 control j 合并
+编辑模式 p，拆开
+shift d 复制
+
+shift s 游标快捷键
+
+几何中心，物体 设置原点  为游标
+
+F2 重命名
+tab切换 模式
+control tab切换 模式
+骨头只哦羽三个模式 ，pose模式
 
 
 
