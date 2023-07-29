@@ -158,7 +158,7 @@ shift 选择物体
 control + p   建立父子关系
 alt + p 解除父子关系
 
-编辑模式或者，tab， 选择面，拉伸
+编辑模式或者，tab， 选择面，拉伸， 或者 右上角条目，变换，防缩锁定xy，防缩只变化z，我也太聪明了，haohao
 g移动，r旋转，s伸缩
 shift a添加 
 
@@ -177,10 +177,19 @@ tab切换 模式
 control tab切换 模式
 骨头只哦羽三个模式 ，pose模式
 
+### 细分
+新建平面 https://www.bilibili.com/video/BV1Q44y1P7t4/?spm_id_from=333.999.0.0&vd_source=1ed400aa8fdc6fe03ecfa7ce0fc2c692  
+9分33秒
+上面编辑模式，边 ，细分
+下面，可以细分 切割次数
 
-
-
-
+圆柱体 
+设置顶点少一些
+环切：ctrol + R
+https://zhuanlan.zhihu.com/p/614487274
+ 
+文字模式，alt+z 开启透视模式
+https://www.bilibili.com/read/cv15939435
 
 
 
