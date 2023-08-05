@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>模型观察者-model-viewer</title>
+    <style>
+        body { margin: 0; padding: 0;}
+        .modelViewer{
+            width: 100vw;
+            height: 80vh;
+        }
+        .footer{
+            height: 20vh;
+            display: flex;
+            align-items: center;
+            flex-direction: column;
+            justify-content: center;
+        }
+        #btn{
+            width: 100%;
+            padding: 15px 0;
+            bottom: 0;
+            /* 溢出呈现滚动条 */
+            overflow-y: hidden;
+            overflow-x: scroll;
+            white-space: nowrap;
+            text-align: center;
+        }
+        #btn .btn_list{
+            display: inline-block;
+            padding: .8rem;
+            cursor: pointer;
+            background-color: rgb(82, 180, 245);
+            color: #fff;
+            font-size: 1rem;
+        }
+        #btn .btn_list:hover{
+            background-color: #007aff;
+        }
+        #btn .active{
+            background-color: #007aff;
+        }
+        .close{
+            width: 4rem;
+            padding: .5rem;
+            cursor: pointer;
+            background-color: rgb(82, 180, 245);
+            color: #fff;
+        }
+        .close:hover{
+            background-color: #007aff;
+        }
+    </style>
+</head>
+<body>
+    <!-- 谷歌实现的一个 web component，可用于查看 Web 上的 3D 模型并与之交互 -->
+    <script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
+<model-viewer 
+  src=""
+  id="view"
+  skybox-image=""
+  ios-src="https://modelviewer.dev/shared-assets/models/Astronaut.usdz"
+  alt="A 3D model of an astronaut"
+  ar
+  xr-environment
+  auto-rotate
+  camera-controls
+  class="modelViewer"
+  ></model-viewer>
+  <div class="footer">
+    <div class="close" id="closeBj">关闭背景</div>
+    <div id="btn"></div>
+  </div>
+  <script>
+      //模型列表
+      var model_list = [
+        {
+            id: 1,
+            name: '小船',
+            src: './3dSourceMaterial/Canoe.glb',
+        },
+        {
+            id: 2,
+            name: '宇航员',
+            src: './3dSourceMaterial/NeilArmstrong.glb',
+        },
+        {
+            id: 3,
+            name: '精致头盔',
+            src: './3dSourceMaterial/DamagedHelmet/glTF/DamagedHelmet.gltf',
+        },
+        {
+            id: 4,
+            name: '宇航员卡通',
+            src: './3dSourceMaterial/Astronaut.glb',
+        },
+        {
+            id: 5,
+            name: '办公椅',
+            src: './3dSourceMaterial/Chair.glb',
+        },
+        {
+            id: 6,
+            name: '搅拌机',
+            src: './3dSourceMaterial/Mixer.glb',
+        },
+        {
+            id: 7,
+            name: '仙人掌',
+            src: './3dSourceMaterial/GeoPlanter.glb',
+        },
+        {
+            id: 8,
+            name: '火车',
+            src:  './3dSourceMaterial/ToyTrain.glb',
+        },
+        {
+            id: 9,
+            name: '音响',
+            src:  './3dSourceMaterial/BoomBox.glb',
+        },
+        {
+            id: 10,
+            name: '碰撞世界',
+            src:  './3dSourceMaterial/collision-world.glb',
+        },
+        {
+            id: 11,
+            name: '小鸟',
+            src:  './3dSourceMaterial/Flamingo.glb',
+        },
+        {
+            id: 12,
+            name: '马',
+            src:  './3dSourceMaterial/Horse.glb',
+        },
+        {
+            id: 13,
+            name: '食物',
+            src:  './3dSourceMaterial/IridescentDishWithOlives.glb',
+        },
+        {
+            id: 14,
+            name: '小型世界',
+            src:  './3dSourceMaterial/LittlestTokyo.glb',
+        },
+        {
+            id: 15,
+            name: '鹦鹉',
+            src:  './3dSourceMaterial/Parrot.glb',
+        },
+        {
+            id: 16,
+            name: '炫酷形状',
+            src:  './3dSourceMaterial/PrimaryIonDrive.glb',
+        },
+        {
+            id: 17,
+            name: 'hi圆形',
+            src:  './3dSourceMaterial/ShadowmappableMesh.glb',
+        },
+        {
+            id: 18,
+            name: '红色椅子',
+            src:  './3dSourceMaterial/SheenChair.glb',
+        },
+        {
+            id: 19,
+            name: '武装人员',
+            src:  './3dSourceMaterial/Soldier.glb',
+        },
+        {
+            id: 20,
+            name: '白色小鸟',
+            src:  './3dSourceMaterial/Stork.glb',
+        },
+        {
+            id: 21,
+            name: '展示物品',
+            src:  './3dSourceMaterial/ClearcoatTest/ClearcoatTest.glb',
+        },
+        {
+            id: 22,
+            name: '高脚池',
+            src:  './3dSourceMaterial/Flower/Flower.glb',
+        },
+        {
+            id: 23,
+            name: '人体塑型',
+            src:  './3dSourceMaterial/LeePerrySmith/LeePerrySmith.glb',
+        },
+        {
+            id: 24,
+            name: '运动鞋',
+            src:  './3dSourceMaterial/MaterialsVariantsShoe/glTF/MaterialsVariantsShoe.gltf',
+        },
+        {
+            id: 25,
+            name: '古代石像',
+            src:  './3dSourceMaterial/Nefertiti/Nefertiti.glb',
+        },
+        {
+            id: 26,
+            name: '机器人',
+            src:  './3dSourceMaterial/RobotExpressive/RobotExpressive.glb',
+        },
+    ];
+    //反转数组
+    // model_list = model_list.reverse();
+      //封装渲染
+      class Render {
+        //定义公共字段
+        //列表数据
+        models = [];
+        //开关状态
+        flag = false;
+        //获取视图控件
+        toggleModel = document.getElementById('view');
+        //列表按钮
+        btn = document.getElementById('btn');
+        //关闭按钮
+        closeBj = document.getElementById('closeBj');
+ 
+        //获取元素并渲染第一个(方法)
+        domRender(){
+            var that = this;
+            this.btnClick(0);
+            this.models.forEach((v,index)=>{
+                var btnElement = document.createElement('div');
+                btnElement.className = 'btn_list';
+                btnElement.innerHTML = v.name;
+                btnElement.setAttribute('id',v.id);
+                //绑定点击事件
+                btnElement.addEventListener('click',function(){
+                //按钮排他思想
+                that.models.forEach((v,index)=>{
+                    btn.children[index].classList.remove('active')
+                    if(v.id == this.getAttribute('id')){
+                        btn.children[index].classList.add('active')
+                        that.btnClick(index);
+                        that.closeBj.innerHTML = '关闭背景'
+                    }
+                })
+                })
+                btn.appendChild(btnElement);
+            })
+            //给第一个按钮新增一个按钮
+            btn.children[0].classList.add('active');
+            //关闭或开启背景图
+            this.closeBj.addEventListener('click',function(){
+                that.flag = !that.flag;
+                if(that.flag){
+                    that.toggleModel.setAttribute('skybox-image', '');
+                    that.closeBj.innerHTML = '开启背景'
+                }else{
+                    that.closeBj.innerHTML = '关闭背景'
+                    that.toggleModel.setAttribute('skybox-image', 'https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fnews.lzu.edu.cn%2FFHup%2Fimages%2F201912%2F12-03_160220-56.png&refer=http%3A%2F%2Fnews.lzu.edu.cn&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=jpeg?sec=1643256256&t=0e1768fa56c1d8e942f1ab9bc36df0b8')
+                }
+            })
+        }
+ 
+        //viewChange切换改变模型内容
+        btnClick(index){
+            this.toggleModel.setAttribute('src', `${this.models[index].src}`)
+            this.toggleModel.setAttribute('skybox-image', `https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fnews.lzu.edu.cn%2FFHup%2Fimages%2F201912%2F12-03_160220-56.png&refer=http%3A%2F%2Fnews.lzu.edu.cn&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=jpeg?sec=1643256256&t=0e1768fa56c1d8e942f1ab9bc36df0b8`)
+        }
+ 
+        constructor(models) {
+            this.models = models;
+        }
+      }
+      var render = new Render(model_list);
+      //渲染以及绑定事件
+      render.domRender();
+  </script>
+</body>
+</html>

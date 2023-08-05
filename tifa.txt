@@ -198,7 +198,11 @@ https://www.bilibili.com/read/cv15939435
 小键盘设置， 在设置里 ，编辑，偏好设置，输入，模拟小键盘， 137就是小键盘的137 了，123切换点线面就不好使了
 
 选中骨头，编辑模式，右键，细分，可以把一根骨头，等分成3份
+### 弹跳的小球
+https://www.bilibili.com/video/BV1io4y157RU?p=5&vd_source=1ed400aa8fdc6fe03ecfa7ce0fc2c692
 
+i 设置
+m 建分组
 
 
 

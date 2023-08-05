@@ -1,0 +1,37 @@
+<html>
+    <head>
+        <title>tifa</title>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>        
+    </head>
+    <body>
+        <h2>鍋</h2>
+        <div align="right">2021/12/21</div>
+        <hr />
+        使用 glb 的示例。在 iOS/iPadOS 上,glTF 会自动转换为 USD 以用于 AR。<br>
+        优先考虑 WebXR。<br>
+        您可以通过点击下图来进行 AR。https://qiita.com/ft-lab/items/a3ddc635c8d034137efa<br>
+        <model-viewer
+          id="my-ar"
+          ios-src="./models/tifa_nude.usdz"
+          ar
+          ar-modes="webxr scene-viewer quick-look"
+          src="./models/nabe.glb"
+          alt="Nabe"
+          auto-rotate
+          camera-controls
+          exposure="0.5"
+          environment-image="./models/images.jpeg"
+          skybox-image
+        ></model-viewer>
+        <br>
+        <script>
+           const modelViewer = document.getElementById('my-ar');
+           console.log(modelViewer.attributes);
+        </script>
+        Source : <a href="https://github.com/ft-lab/ft-lab.github.io/tree/master/ar/modelviewer/nabe">https://github.com/ft-lab/ft-lab.github.io/tree/master/ar/modelviewer/nabe</a><br>
+        <hr />
+    </body>
+</html>
+
