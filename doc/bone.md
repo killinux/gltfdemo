@@ -22,3 +22,9 @@ https://www.wafrat.com/how-to-fix-rigify-error/
 5. 右边小人--Rigify--->Generate Rig ，生成“圈圈”  
 6. 人绑定到骨骼上：先选人，再选“圈圈” ，ctrol + p ,骨架变形---第三个附带自重权重  
 7. 如果人不见了，就找找，有可能人放大了或者躺地上了，再旋转调整一遍，就能用“姿态模式”控制了  
+
+
+高级：
+骨骼插件
+https://www.bilibili.com/video/BV1Bf4y1q7aQ/?spm_id_from=333.337.search-card.all.click&vd_source=1ed400aa8fdc6fe03ecfa7ce0fc2c692
+

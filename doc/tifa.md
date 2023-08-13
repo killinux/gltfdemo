@@ -1,5 +1,6 @@
 ##基本操作
 
+alt g 回到原位 https://jingyan.baidu.com/article/bea41d4384c8f0f5c41be60c.html   
 shift a 添加
 a全选
 g移动
