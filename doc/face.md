@@ -1,10 +1,13 @@
 
 blender表情
 https://www.bilibili.com/video/BV1dy4y1T7gy?p=1&vd_source=1ed400aa8fdc6fe03ecfa7ce0fc2c692
+https://faceit-doc.readthedocs.io/en/latest/
 
 需要安装 
 addRoutes 用于连手机的face cap
-face eit 
+face eit  面部捕捉
+
+还有个Rokoko可以动作捕捉哟
 
 
 problem1:
@@ -72,4 +75,36 @@ bpy.context.preferences.themes[0].view_3d.vertex_size = int(scene.faceit_vertex_
 
 mocap 
 点击 setup Facecap OSC Routes
+就可以用了
+
+
+# 新模型测试 
+模型来源 https://www.cg99.com/models/detail/230587.html
+这个面部可以哦
+setup
+    注册面部对象
+    选中眼睛，瞳孔，牙，舌头，点击 register Selected Object
+    注册上相关顶点组 
+rig
+    生成地标 对齐下巴，对齐眼睛，对齐颧骨
+    Project Landmarks
+    调整 点
+    生成绑定和动画
+    绑定
+    次要绑定(Bind Secondry)
+animate
+    Show All Options 和 Auto Mirror X 和自动插针 都打开
+    调整动作细节
+烘培
+    物体模式 选中 头，点击 Bake ARKit shape keys
+    Auto Recorder Indices ---> Face cap，确定
+    Genrate Test Action ---空格启动，如果没启动，动画调成时间线模式，启动，测试动作
+Mocap
+    切换到AddRoutes config 配置 ip和端口
+    Face cap---> Live Mocap ,Setup Facecap OSC Routes
+
+
+
+
+右上角漏斗图标，可以把向西北方向的箭头勾选出来，可以控制是否可以被选中
 
