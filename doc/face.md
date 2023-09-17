@@ -1,4 +1,17 @@
 
+编辑模式选定点，分离眉毛牙齿的时候，
+有时候 L不能解决问题，可以使用control +,来逐渐的扩展范围，左上角的加选，反选等就很重要了 
+control i 反选
+shift 框选能多选，contral框选能去掉
+alt 左键能循环选，选立体的一圈
+alt shift 左键 选择循环边
+control shift 两个点，两个点之间的就倍选中了
+g,gg 滑动移动
+
+control R 重构网格
+
+两个定点，F连接
+
 blender表情
 https://www.bilibili.com/video/BV1dy4y1T7gy?p=1&vd_source=1ed400aa8fdc6fe03ecfa7ce0fc2c692
 https://faceit-doc.readthedocs.io/en/latest/
@@ -36,7 +49,7 @@ bpy.context.preferences.themes[0].view_3d.vertex_size = int(scene.faceit_vertex_
 开始操作：
 模型分离
 
-编辑模式，选中，l， p，进行分离
+编辑模式，选中，l， p，进行分离,l如果不好用就用ctrol +
 选中脸 ，l， p，进行分离
 选中两个眼眉  ，l ，p ，进行分离
 
