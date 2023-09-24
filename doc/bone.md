@@ -28,3 +28,11 @@ https://www.wafrat.com/how-to-fix-rigify-error/
 骨骼插件
 https://www.bilibili.com/video/BV1Bf4y1q7aQ/?spm_id_from=333.337.search-card.all.click&vd_source=1ed400aa8fdc6fe03ecfa7ce0fc2c692
 
+
+mixamo 动作
+动作的fbx下载：https://www.mixamo.com/#/
+blender插件下载
+https://substance3d.adobe.com/plugins/mixamo-in-blender/
+mi
+
+https://www.bilibili.com/video/BV1yY411R7Zw/?spm_id_from=333.337.search-card.all.click&vd_source=1ed400aa8fdc6fe03ecfa7ce0fc2c692
