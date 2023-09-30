@@ -1,0 +1,19 @@
+播放 体积视频？
+https://github.com/killinux/Depthkit.js
+
+图片生成3d脸
+facebuilder
+https://www.bilibili.com/video/BV1Xg4y1T78f/?spm_id_from=333.337.search-card.all.click&vd_source=1ed400aa8fdc6fe03ecfa7ce0fc2c692
+
+体积视频
+github.com/killinux/Depthkit.js  fork了一个 Depthkit ，用webgl播放 volumteric video，体积视频就可以播放了。所以看起来，照片通过facebuilder生成3d模型，然后用rokoko或者mixamo让模型身体动起来，facit+facecap控制面部表情 ，然后还差个录制，virtuCamera不行呀，录制搞定就可以用Depthkit播放了
+
+ry:
+https://www.bilibili.com/video/BV1bj411z7H6/?spm_id_from=333.337.search-card.all.click&vd_source=1ed400aa8fdc6fe03ecfa7ce0fc2c692
+
+透明玻璃:
+
+问题：
+1. iphone15能拍摄体积视频么,
+2. 是不是用facebulder做脸，然后学个做衣服就可以了
+3.
