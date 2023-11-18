@@ -61,17 +61,20 @@ const loader = new GLTFLoader();
 //const this_url="./model/tree.gltf";
 //const this_url="./models/cg99/tifa_dress_175822.glb";
 //const this_url="./models/cg99/tifa_ziyi.glb";
-const this_url="./models/cg99/xrm.glb";
+//const this_url="./models/tifa5_v1_8_3e.glb";
+//const this_url="./models/Tifa_v2.9.3_by_Mokujinh.glb";
+const this_url="./models/Tifa_V5.04_by__Mokujinh.glb";
+//const this_url="./models/111.glb";
 //const this_url="./models/cg99/tifa_102998.glb";
 console.log(this_url);
 loader.load(this_url, (gltf) => {
-    // gltf.scene.traverse( function ( child ) {
-    //   if(child.isMesh){
-    //       child.material.emissive=child.material.color;
-    //       child.material.emissiveIntensity=1;
-    //       child.material.emissiveMap=child.material.map;
-    //   }
-    // });
+//     gltf.scene.traverse( function ( child ) {
+//       if(child.isMesh){
+//           child.material.emissive=child.material.color;
+//           child.material.emissiveIntensity=1;
+//           child.material.emissiveMap=child.material.map;
+//       }
+//     });
     gltf.scene.scale.set(100, 100, 100);
 	  console.log(gltf.scene);
     scene.add(gltf.scene);
