@@ -6,3 +6,5 @@ https://keentools.io/download/core
 bili:https://www.bilibili.com/video/BV1Sv4y127G7/?spm_id_from=333.337.search-card.all.click&vd_source=1ed400aa8fdc6fe03ecfa7ce0fc2c692
 https://www.bilibili.com/video/BV1EH4y1D73y/?spm_id_from=autoNext&vd_source=1ed400aa8fdc6fe03ecfa7ce0fc2c692
 
+
+blenders生成贴图后，用纹理绘制的“涂抹”修复黑色的部分
