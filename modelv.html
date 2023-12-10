@@ -1,0 +1,43 @@
+<html>
+    <head>
+        <title>tifa</title>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>        
+        <!--script type="module" src="js/model-viewer.js"></script-->        
+	<style>
+      model-viewer {
+        cursor: grab;
+        display: flex;
+        height: 90vh;
+        width: 100%;
+        overflow: hidden;
+        position: relative;
+        user-select: none;
+      }
+    </style>
+    </head>
+    <body>
+        <!--
+        environment-image="./models/images.jpeg" ! ios-src="./models/nabe.glb" exposure="0.5" 
+         ios-src="./models/Tifa_V5.02_by__Mokujinh_Hlbj6CZ.usdz"
+        skybox-image ios-src="./models/ye.usdz"
+          src="./models/witch_naked.glb"
+        -->
+        <model-viewer
+          id="my-ar"
+          ar
+          ar-modes="webxr scene-viewer quick-look"
+          src="./models/Tifa_v2.9.3_by_Mokujinh.glb"
+          alt="Nabe"
+          auto-rotatefa
+          camera-controls
+        >
+		</model-viewer>
+        <script>
+           const modelViewer = document.getElementById('my-ar');
+           console.log(modelViewer.attributes);
+        </script>
+    </body>
+</html>
+
