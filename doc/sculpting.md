@@ -59,3 +59,9 @@ https://www.bilibili.com/cheese/play/ep101809?csource=common_hp_favorite_null&sp
 毛发：
 护理尾巴,用 圆环和 路径曲线，控制
 https://www.bilibili.com/video/BV1Du411c7p6?p=2&vd_source=1ed400aa8fdc6fe03ecfa7ce0fc2c692
+
+动态拓扑很重要 ！！！！！
+
+https://docs.blender.org/manual/zh-hans/2.79/editors/3dview/object/editing/transform/mirror.html
+景象操作
+ctl+m ，x
