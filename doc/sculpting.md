@@ -1,3 +1,9 @@
+1. 螺丝刀，添加网格重构， 0.01
+2. 重建网格0.01，r
+3. 动态拓扑，细节大小3px
+
+
+
 bilibili
 雕刻最重要的是
 先添加修改器，把面变多，
@@ -61,6 +67,7 @@ https://www.bilibili.com/cheese/play/ep101809?csource=common_hp_favorite_null&sp
 https://www.bilibili.com/video/BV1Du411c7p6?p=2&vd_source=1ed400aa8fdc6fe03ecfa7ce0fc2c692
 
 动态拓扑很重要 ！！！！！
+调整细节大小
 
 https://docs.blender.org/manual/zh-hans/2.79/editors/3dview/object/editing/transform/mirror.html
 景象操作
