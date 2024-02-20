@@ -1,0 +1,131 @@
+
+<!DOCTYPE html>
+<html lang="us">
+
+<head>
+    <title>4Dviews - Volumetric video capture technology</title>
+
+<meta content="text/html" charset="utf-8" />
+<!-- <meta name="viewport" content="width=device-width, initial-scale=1" /> -->
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1, user-scalable=0, viewport-fit=cover">
+
+<!-- Google Fonts -->
+<link rel="font" href="https://fonts.googleapis.com/css2?family=Lato:wght@100;300;400;700;900&family=Oswald:wght@200;300;400;700&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Lato:wght@100;300;400;700;900&family=Oswald:wght@200;300;400;700&display=swap">
+<!-- CSS -->
+<link rel="stylesheet" type="text/css" href="https://www.4dviews.com/css/style.css" />
+<!-- FONT AWESOME -->
+<link rel="stylesheet" type="text/css" href="https://www.4dviews.com/css/all.min.css" />
+<!-- LIB: JQUERY -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+<!-- LIB: POPPER FOR BOOTSTRAP -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+
+<!-- LIB: BOOTSTRAP -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous"></script>
+
+<!-- favicons 
+<link rel="apple-touch-icon" sizes="180x180" href="https://www.4dviews.com/img/favicon/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://www.4dviews.com/img/favicon/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="https://www.4dviews.com/img/favicon/favicon-16x16.png">
+<link rel="manifest" href="https://www.4dviews.com/img/favicon/site.webmanifest">
+-->
+<!-- LIB: BABYLON JS 
+<script src="https://preview.babylonjs.com/babylon.js"></script>
+<script src="https://preview.babylonjs.com/loaders/babylonjs.loaders.min.js"></script>-->
+
+<!-- LIB: LOADER FOR BABYLON JS 
+<script src="https://cdn.babylonjs.com/loaders/babylonjs.loaders.min.js"></script>-->
+
+<!-- LIB: JQUERY PEP FOR BABYLON JS 
+<script src="https://code.jquery.com/pep/0.4.1/pep.js"></script>  -->
+
+<!-- JavaScript / JQuery -->
+<script src="https://www.4dviews.com/js/script.js"></script>
+
+<!-- Matomo -->
+<script>
+    var _paq = window._paq = window._paq || [];
+    /* tracker methods like "setCustomDimension" should be called before "trackPageView" */
+    _paq.push(['trackPageView']);
+    _paq.push(['enableLinkTracking']);
+    (function() {
+        var u = "https://fourdviews.matomo.cloud/";
+        _paq.push(['setTrackerUrl', u + 'matomo.php']);
+        _paq.push(['setSiteId', '1']);
+        var d = document,
+            g = d.createElement('script'),
+            s = d.getElementsByTagName('script')[0];
+        g.async = true;
+        g.src = '//cdn.matomo.cloud/fourdviews.matomo.cloud/matomo.js';
+        s.parentNode.insertBefore(g, s);
+    })();
+</script>
+<!-- End Matomo Code -->
+    <script type="module" src="https://unpkg.com/viewer-4dv/viewer-4dv.min.js"></script>
+
+</head>
+
+<body id="page-demoweb" class="page-4dv" style="min-height:-webkit-fill-available;background-color:var(--4dv-light);overflow: hidden;">
+<!-- <body> -->
+
+    <header class="bg-transparent scroll-transparent-dark">
+        <nav id="header-nav" class="fixed-top navbar navbar-expand-lg">
+
+	<a id="header-logo-link" href="https://www.4dviews.com" class="navbar-brand">
+        <div class="header-logo"></div>
+    </a>
+
+	<div id="header-nav-elements" class="navbar-collapse collapse">
+		<ul class="navbar-nav ms-auto">
+            
+             <!-- DROPDOWN PRODUCT MENU -->
+			<!-- <li class="nav-item"><a id="nav-link-products" class="nav-link" href="https://www.4dviews.com/volumetric-systems">Products</a></li> -->
+
+			<li class="nav-item dropdown">
+				<a style="" class="btn-safari-fix nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#">Products</a>
+				<div class="dropdown-menu dropdown-menu-left ">
+					<div class="dropdown-submenu">
+						<div class="dropdown-item"><span style="font-size:0.85em;">Volumetric Capture Systems</span></div>
+						<a class="dropdown-item" href="https://www.4dviews.com/volumetric-systems"><strong>HOLOSYS+</strong></a>
+						<a class="dropdown-item" href="https://www.4dviews.com/holosys"><strong>HOLOSYS</strong></a>
+						<div class="dropdown-item"><span style="font-size:0.85em;">Editing Software</span></div>
+						<a class="dropdown-item" href="https://www.4dviews.com/volumetric-software"><strong>4DFX</strong></a>
+					</div>
+				</div>
+			</li>
+            
+            <!-- SIMPLE PRODUCT MENU -->
+			<li class="nav-item"><a id="nav-link-studios" class="nav-link" href="https://www.4dviews.com/volumetric-studios">Studios</a></li>
+			<li class="nav-item"><a id="nav-link-demoweb" class="nav-link" href="https://www.4dviews.com/volumetric-demo">Demo</a></li>
+			<li class="nav-item"><a id="nav-link-samples" class="nav-link" href="https://www.4dviews.com/volumetric-samples">Samples</a></li>
+            
+            <li class="nav-item"><a class="nav-link" href="https://creators.4dviews.com">Creators</a></li>			<li class="nav-item"><a id="nav-link-contactus" class="nav-link" href="https://www.4dviews.com/contact-us">Contact</a></li>
+            
+		</ul>
+	</div>
+
+	<button id="header-nav-button" class="navbar-toggler closed"  data-bs-toggle="collapse" data-bs-target="#header-nav-elements" type="button">
+		<div class="header-nav-button-wrapper ms-auto">
+			<div class="header-nav-button-bar"></div>
+			<div class="header-nav-button-bar"></div>
+			<div class="header-nav-button-bar"></div>
+		</div>
+	</button>
+</nav>    </header>
+
+    <section style="background-color: var(--4dv-dark);height: 100%;">
+        <div id="volumetric-video-demo">
+
+                <viewer-4dv grid
+                src-mobile= "https://10.3.198.218:5488/4ds/Fire_Mobile_720.4ds"
+				src-desktop="https://10.3.198.218:5488/4ds/Fire_DESKTOP_2880.4ds" 
+                poster="https://www.4dviews.com/img/illustration/samples/posterFire.webp" camera-pos="[0,2,3]" overlay-logo="https://www.4dviews.com/img/brand/shot_on_holosys.webp"></viewer-4dv>
+        </div>
+    </section>
+
+</body>
+
+</html>

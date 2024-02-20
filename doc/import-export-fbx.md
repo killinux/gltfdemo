@@ -1,5 +1,7 @@
 导入导出的问题
 
+似乎那个 import_fbx_mat_1.0 没起作用，下次再试试吧
+
 三个插件,导出动画问题，多个材质合并问题，某个 group node 导出问题
 Better FBX Importer & Exporter v5.4
 Material Combiner

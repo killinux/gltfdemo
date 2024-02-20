@@ -1,0 +1,30 @@
+
+<!DOCTYPE html>
+<html lang="us">
+
+<head>
+    <title>4Dviews - Volumetric video capture technology</title>
+
+<meta content="text/html" charset="utf-8" />
+<!-- <meta name="viewport" content="width=device-width, initial-scale=1" /> -->
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1, user-scalable=0, viewport-fit=cover">
+
+<!-- CSS -->
+<link rel="stylesheet" type="text/css" href="https://www.4dviews.com/css/style.css" />
+<!-- FONT AWESOME -->
+<link rel="stylesheet" type="text/css" href="https://www.4dviews.com/css/all.min.css" />
+<script type="module" src="https://unpkg.com/viewer-4dv/viewer-4dv.min.js"></script>
+</head>
+<body id="page-demoweb" class="page-4dv" style="min-height:-webkit-fill-available;background-color:var(--4dv-light);overflow: hidden;">
+    <section style="background-color: var(--4dv-dark);height: 100%;">
+        <div id="volumetric-video-demo">
+                <viewer-4dv grid
+                src-mobile="https://10.3.198.218:5488/4ds/Fire_Mobile_720.4ds"
+				src-desktop="https://10.3.198.218:5488/4ds/Fire_DESKTOP_2880.4ds" 
+                poster="" camera-pos="[0,2,3]" overlay-logo=""></viewer-4dv>
+        </div>
+    </section>
+
+</body>
+
+</html>
